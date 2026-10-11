@@ -8,7 +8,13 @@ version = "0.1.0"
 description = "AFL possession threat analysis and opposition reports"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pandas==3.0.6",
+    "pyarrow==26.0.0",
+]
+
+[project.optional-dependencies]
+notebook = ["notebook==7.6.3"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

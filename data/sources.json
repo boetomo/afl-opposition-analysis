@@ -1,0 +1,15 @@
+{
+  "dataset": "torpdata chains",
+  "release_url": "https://github.com/peteowen1/torpdata/releases/tag/chains-data",
+  "metadata_checked_on": "2026-10-11",
+  "seasons": {
+    "2023": {
+      "url": "https://github.com/peteowen1/torpdata/releases/download/chains-data/chains_data_2023_all.parquet",
+      "filename": "chains_data_2023_all.parquet",
+      "size_bytes": 5557104,
+      "sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d",
+      "github_asset_id": 451015430,
+      "source_updated_at": "2026-06-18T08:20:48Z"
+    }
+  }
+}

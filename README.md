@@ -30,6 +30,18 @@ The revised Transformer leads the single-model comparison on BCE, Brier score an
 
 The notebooks include saved outputs that can be read on GitHub without running training. Rerunning the analysis requires generating the local data and experiment artifacts using the commands below.
 
+## AI-assisted development
+
+This project was developed by Bastian Oetomo with assistance from OpenAI Codex for implementation, debugging, automated tests, experiment execution and documentation. Bastian directed the research questions, model comparisons and evaluation protocol, and requested revisions when methods or results needed further scrutiny.
+
+The workflow combines human direction with agent-assisted development:
+
+- **Define the experiments.** Establish shot and goal targets, compare simple baselines with sequence models, and specify validation-based hyperparameter selection followed by refitting on training plus validation data and evaluation with frozen models.
+- **Investigate model behaviour.** Compare LSTMs with and without possession history, then examine the initial Transformer's training diagnostics and revise its optimisation and hyperparameter search. The [LSTM comparison](notebooks/09_lstm_comparison.ipynb) and [Transformer retraining report](docs/transformer-retraining.md) record these experiments.
+- **Make the work reviewable.** Retain source checksums, label audits, automated tests and executed notebook outputs; report calibration, confusion matrices and limitations, including repeated use of the 2026 benchmark.
+
+Codex's assistance is acknowledged as part of the development process. The maintainer remains responsible for reviewing the implementation, interpreting the results and assessing whether the models are suitable for a particular use.
+
 ## Project aim
 
 > Which recurring ball-movement patterns lead to goals, and how early can a threatening possession be identified?

@@ -1,0 +1,176 @@
+{
+  "checked_on": "2026-10-11",
+  "fixture_release_url": "https://github.com/peteowen1/torpdata/releases/tag/fixtures-data",
+  "coverage_definition": "Match identifiers compared with all CONCLUDED AFL fixtures in the pinned catalogue. Match presence does not certify event completeness.",
+  "seasons": [
+    {
+      "season": 2023,
+      "raw_rows": 442482,
+      "event_matches": 216,
+      "fixture_matches": 216,
+      "fixture_status_counts": {
+        "CONCLUDED": 216
+      },
+      "raw_status_counts": {
+        "CONCLUDED": 216
+      },
+      "first_date": "2023-03-16",
+      "last_date": "2023-09-30",
+      "missing_matches": [],
+      "extra_match_ids": [],
+      "unknown_descriptions": [],
+      "fixture_source": {
+        "url": "https://github.com/peteowen1/torpdata/releases/download/fixtures-data/fixtures_2023.parquet",
+        "filename": "fixtures_2023.parquet",
+        "size_bytes": 37133,
+        "sha256": "abb3290ed4c69dbcbd5da9000c1cc1ad547072a189cce8abdacf5545f8f9bde6"
+      },
+      "event_rows": 317812,
+      "possessions": 56160,
+      "possessions_requiring_review": 3698,
+      "quarantined_rows": 0,
+      "quarantined_quarters": [],
+      "raw_sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d"
+    },
+    {
+      "season": 2024,
+      "raw_rows": 426754,
+      "event_matches": 215,
+      "fixture_matches": 216,
+      "fixture_status_counts": {
+        "CONCLUDED": 216
+      },
+      "raw_status_counts": {
+        "CONCLUDED": 215
+      },
+      "first_date": "2024-03-07",
+      "last_date": "2024-09-28",
+      "missing_matches": [
+        {
+          "match_id": "CD_M20240142309",
+          "utc_start_time": "2024-08-18T03:10:00.000+0000",
+          "status": "CONCLUDED",
+          "home_team_name": "Western Bulldogs",
+          "away_team_name": "North Melbourne"
+        }
+      ],
+      "extra_match_ids": [],
+      "unknown_descriptions": [
+        "Ball Up",
+        "Baulk",
+        "Free Against",
+        "Goal Assist",
+        "Run Down Tackle",
+        "Shark",
+        "Throw In Hitout Shark"
+      ],
+      "fixture_source": {
+        "url": "https://github.com/peteowen1/torpdata/releases/download/fixtures-data/fixtures_2024.parquet",
+        "filename": "fixtures_2024.parquet",
+        "size_bytes": 39362,
+        "sha256": "898df6b75e909c0d1d21fde7e6d7765d81d08c49ec1aa7e9ebefc0fd1c04c362"
+      },
+      "event_rows": 307467,
+      "possessions": 54049,
+      "possessions_requiring_review": 3369,
+      "quarantined_rows": 589,
+      "quarantined_quarters": [
+        {
+          "match_id": "CD_M20240141606",
+          "period": 3
+        }
+      ],
+      "raw_sha256": "50bd3b31efe3407d94ba9b80f0d04dd69f7012f3099c3aba1fa41bf53dc3c74e"
+    },
+    {
+      "season": 2025,
+      "raw_rows": 430827,
+      "event_matches": 216,
+      "fixture_matches": 216,
+      "fixture_status_counts": {
+        "CONCLUDED": 216
+      },
+      "raw_status_counts": {
+        "CONCLUDED": 216
+      },
+      "first_date": "2025-03-07",
+      "last_date": "2025-09-27",
+      "missing_matches": [],
+      "extra_match_ids": [],
+      "unknown_descriptions": [
+        "Free Against",
+        "Goal Assist",
+        "Shark"
+      ],
+      "fixture_source": {
+        "url": "https://github.com/peteowen1/torpdata/releases/download/fixtures-data/fixtures_2025.parquet",
+        "filename": "fixtures_2025.parquet",
+        "size_bytes": 39977,
+        "sha256": "f52994f7e2e6517b9e552c91f6ee0fc8bd98fbc76bd0a4d40f70f50d67f572ee"
+      },
+      "event_rows": 310691,
+      "possessions": 54035,
+      "possessions_requiring_review": 3245,
+      "quarantined_rows": 1027,
+      "quarantined_quarters": [
+        {
+          "match_id": "CD_M20250140608",
+          "period": 4
+        },
+        {
+          "match_id": "CD_M20250141305",
+          "period": 4
+        }
+      ],
+      "raw_sha256": "1e355570f558b28520699b8e621d0ea6b022f7697b14f37ac25fd624041bed0f"
+    },
+    {
+      "season": 2026,
+      "raw_rows": 447945,
+      "event_matches": 218,
+      "fixture_matches": 218,
+      "fixture_status_counts": {
+        "CONCLUDED": 218
+      },
+      "raw_status_counts": {
+        "CONCLUDED": 218
+      },
+      "first_date": "2026-03-05",
+      "last_date": "2026-09-26",
+      "missing_matches": [],
+      "extra_match_ids": [],
+      "unknown_descriptions": [
+        "Behind Assist",
+        "Free Against",
+        "Run Down Tackle",
+        "Shark",
+        "TI Hitout To Advantage"
+      ],
+      "fixture_source": {
+        "url": "https://github.com/peteowen1/torpdata/releases/download/fixtures-data/fixtures_2026.parquet",
+        "filename": "fixtures_2026.parquet",
+        "size_bytes": 40113,
+        "sha256": "74fd1d69158025b799483d379b893581bf0cd334e818b0b64e8a669e1ffa0716"
+      },
+      "event_rows": 324461,
+      "possessions": 54892,
+      "possessions_requiring_review": 3629,
+      "quarantined_rows": 1616,
+      "quarantined_quarters": [
+        {
+          "match_id": "CD_M20260140001",
+          "period": 1
+        },
+        {
+          "match_id": "CD_M20260140206",
+          "period": 2
+        },
+        {
+          "match_id": "CD_M20260142005",
+          "period": 3
+        }
+      ],
+      "raw_sha256": "679d97f96204dc3f8189fc94ad3d3cae3a7861145c8c6c0ad114951a45abf74f"
+    }
+  ]
+}

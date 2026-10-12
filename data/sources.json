@@ -10,6 +10,30 @@
       "sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d",
       "github_asset_id": 451015430,
       "source_updated_at": "2026-06-18T08:20:48Z"
+    },
+    "2024": {
+      "url": "https://github.com/peteowen1/torpdata/releases/download/chains-data/chains_data_2024_all.parquet",
+      "filename": "chains_data_2024_all.parquet",
+      "size_bytes": 5296504,
+      "sha256": "50bd3b31efe3407d94ba9b80f0d04dd69f7012f3099c3aba1fa41bf53dc3c74e",
+      "github_asset_id": 451017470,
+      "source_updated_at": "2026-06-18T08:22:51Z"
+    },
+    "2025": {
+      "url": "https://github.com/peteowen1/torpdata/releases/download/chains-data/chains_data_2025_all.parquet",
+      "filename": "chains_data_2025_all.parquet",
+      "size_bytes": 5338901,
+      "sha256": "1e355570f558b28520699b8e621d0ea6b022f7697b14f37ac25fd624041bed0f",
+      "github_asset_id": 451018673,
+      "source_updated_at": "2026-06-18T08:24:46Z"
+    },
+    "2026": {
+      "url": "https://github.com/peteowen1/torpdata/releases/download/chains-data/chains_data_2026_all.parquet",
+      "filename": "chains_data_2026_all.parquet",
+      "size_bytes": 5788049,
+      "sha256": "679d97f96204dc3f8189fc94ad3d3cae3a7861145c8c6c0ad114951a45abf74f",
+      "github_asset_id": 630583320,
+      "source_updated_at": "2026-10-11T11:34:27Z"
     }
   }
 }

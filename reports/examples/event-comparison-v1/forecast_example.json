@@ -1,0 +1,75 @@
+{
+  "selection": "First recorded test quarter, after its first 200 tokens; not selected by model performance.",
+  "actual_next_match_event": {
+    "action": "kick",
+    "side": 0,
+    "x_home": -0.34838709677419355,
+    "y_home": 0.5441176470588235,
+    "has_coordinates": true
+  },
+  "team_stream": {
+    "mode": "team_stream",
+    "history_events": 40,
+    "location": [
+      -0.38593626022338867,
+      0.5379114747047424
+    ],
+    "focal_side": 0,
+    "action_probabilities": {
+      "bounce": 0.6643825173377991,
+      "free_kick": 0.010372495278716087,
+      "gather": 0.0015223660739138722,
+      "ground_kick": 0.0011809677816927433,
+      "handball": 0.09683027863502502,
+      "hard_ball_get": 0.0006779215182177722,
+      "kick": 0.218331977725029,
+      "kick_in": 0.001254284754395485,
+      "kick_in_play_on": 0.001066484721377492,
+      "loose_ball_get": 0.0009244997054338455,
+      "mark": 0.002390823559835553,
+      "receive": 0.0010653638746589422
+    },
+    "location_frame": "focal team attacking +x; meaningful for ordinary continuation",
+    "location_supported_by_training_mask": true
+  },
+  "joint": {
+    "mode": "joint",
+    "history_events": 200,
+    "location": [
+      -0.41146016120910645,
+      0.5260494947433472
+    ],
+    "next_event_probabilities": {
+      "home": {
+        "bounce": 0.1275360882282257,
+        "free_kick": 0.0024122712202370167,
+        "gather": 0.0001625194272492081,
+        "ground_kick": 9.646521357353777e-05,
+        "handball": 0.310899943113327,
+        "hard_ball_get": 0.00017634639516472816,
+        "kick": 0.5480552911758423,
+        "kick_in": 7.38789412935148e-06,
+        "kick_in_play_on": 4.473629451240413e-05,
+        "loose_ball_get": 0.0008811745792627335,
+        "mark": 7.06439732311992e-06,
+        "receive": 2.5591520170564763e-05
+      },
+      "away": {
+        "bounce": 3.477026257314719e-05,
+        "free_kick": 0.006672761868685484,
+        "gather": 4.8973826778819785e-05,
+        "ground_kick": 6.435689283534884e-05,
+        "handball": 0.00011023273691534996,
+        "hard_ball_get": 0.00019960073404945433,
+        "kick": 0.00012961849279236048,
+        "kick_in": 7.861256676733319e-07,
+        "kick_in_play_on": 3.6169072359371057e-07,
+        "loose_ball_get": 0.0007022854406386614,
+        "mark": 1.3200115063227713e-06,
+        "receive": 1.4413465088125577e-08
+      },
+      "boundary": 0.0017300937324762344
+    },
+    "location_frame": "home attacking +x; conditional on an ordinary action"
+  }
+}

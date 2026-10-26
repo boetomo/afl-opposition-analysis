@@ -1,0 +1,382 @@
+{
+  "plan": {
+    "configs": [
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 16,
+        "embedding_dim": 8,
+        "continuous_dim": 24,
+        "layers": 1,
+        "dropout": 0.1
+      },
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 32,
+        "embedding_dim": 8,
+        "continuous_dim": 24,
+        "layers": 1,
+        "dropout": 0.1
+      },
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 64,
+        "embedding_dim": 8,
+        "continuous_dim": 24,
+        "layers": 1,
+        "dropout": 0.1
+      },
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 32,
+        "embedding_dim": 16,
+        "continuous_dim": 48,
+        "layers": 1,
+        "dropout": 0.1
+      },
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 32,
+        "embedding_dim": 16,
+        "continuous_dim": 48,
+        "layers": 2,
+        "dropout": 0.1
+      },
+      {
+        "heads": 4,
+        "ff_multiplier": 4,
+        "dense_dim": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_history": 32,
+        "embedding_dim": 16,
+        "continuous_dim": 48,
+        "layers": 2,
+        "dropout": 0.25
+      }
+    ],
+    "initial_epochs": 4,
+    "final_epochs": 12,
+    "finalists": 2,
+    "patience": 3,
+    "seed": 2026,
+    "batch_size": 1024,
+    "selection_metric": "5 * unweighted multiclass log loss + masked location RMSE",
+    "source_hashes": {
+      "next_events.py": "c0e730e7efd44a88beb0a6d7644ad5162369915345896dc719914befb3533ecf",
+      "next_event_model.py": "849592716e6c36fc754050c3eb650d0f617fc5c1bbb96755295f27791e458cae",
+      "next_event_experiment.py": "5c14c53557679370a2275604249ac4851ad0fc3de49def1930938c6f3f015dc9",
+      "sequence.py": "9b2615823158fe8230b2693e7ba1cf63dfb25beec1289ede869aca097dbe2912",
+      "baseline.py": "8515e5d817396e0456c3bffcb9de2b8c65440329198537ba07aaf2b146dfc51f",
+      "preprocess.py": "5a1f1c5f0ed11aa36bb559581c509c2419dcc89eeed10904cb71f3ae27dc48ed",
+      "action_rules.py": "eea2ac2ae76793ce97fa68ad4e2a03be27c1620e87347eac44ac9587a5d47e6c",
+      "data.py": "ec5dd294eb603de5cf216d5fd6bf80a2cc91ad16398991f9e5023185a502698f"
+    },
+    "provenance": {
+      "sources": {
+        "2023": {
+          "source_sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d",
+          "source_filename": "chains_data_2023_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 2000,
+          "conflicting_shot_markers": 0,
+          "shot_conflict_possessions": 0,
+          "shot_conflict_locations": [],
+          "time_reversal_policy": "reject",
+          "quarantined_rows": 0,
+          "quarantined_quarters": [],
+          "processed_file_sha256": {
+            "events.parquet": "2fa7f9a714f58fb026743e0fe0a33a4d5bb19f86b3d345c1e798ee118780e380",
+            "possessions.parquet": "7da2aea48aea8cd50755d0669d00db997070f2f7855077fe71bf79db051d9e7d",
+            "annotations.parquet": "48c972136563688c7b08a17be17332cd0e98b87efc5bf6bd110fff6a166cbcdc",
+            "summary.json": "c0c3cd7b519b7b1bb9773fe39dc487224ab5d44fd33e0139b7b284116df5387c"
+          }
+        },
+        "2024": {
+          "source_sha256": "50bd3b31efe3407d94ba9b80f0d04dd69f7012f3099c3aba1fa41bf53dc3c74e",
+          "source_filename": "chains_data_2024_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 1760,
+          "conflicting_shot_markers": 1,
+          "shot_conflict_possessions": 1,
+          "shot_conflict_locations": [
+            {
+              "match_id": "CD_M20240142308",
+              "period": 1,
+              "chain_number": 60,
+              "display_order": 459
+            }
+          ],
+          "time_reversal_policy": "quarantine_quarter_v1",
+          "quarantined_rows": 589,
+          "quarantined_quarters": [
+            {
+              "match_id": "CD_M20240141606",
+              "period": 3
+            }
+          ],
+          "processed_file_sha256": {
+            "events.parquet": "04e7f5a5ad3a47e4fd22aef303335958759c760f6111e4420e9a73e3c7856e6d",
+            "possessions.parquet": "d38f41c1a77b6afd12a7ddc32147a225b969920e5ec68bf32b0dddcceeaf1a07",
+            "annotations.parquet": "6217ab3aa2230bfc7eddf7f5a67b1a8b407c7e937bc81f20b13bcc91c298804b",
+            "summary.json": "bf4792b189ee2f690e2a344e5b899875c7a497fa15db3a105cbcd71bd86e5953"
+          }
+        },
+        "2025": {
+          "source_sha256": "1e355570f558b28520699b8e621d0ea6b022f7697b14f37ac25fd624041bed0f",
+          "source_filename": "chains_data_2025_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 1843,
+          "conflicting_shot_markers": 1,
+          "shot_conflict_possessions": 2,
+          "shot_conflict_locations": [
+            {
+              "match_id": "CD_M20250140303",
+              "period": 4,
+              "chain_number": 205,
+              "display_order": 1824
+            }
+          ],
+          "time_reversal_policy": "quarantine_quarter_v1",
+          "quarantined_rows": 1027,
+          "quarantined_quarters": [
+            {
+              "match_id": "CD_M20250140608",
+              "period": 4
+            },
+            {
+              "match_id": "CD_M20250141305",
+              "period": 4
+            }
+          ],
+          "processed_file_sha256": {
+            "events.parquet": "44ddd544caa6c206427c48975f8f66bdaf3062a11686def40659cc22a58a85f0",
+            "possessions.parquet": "c2a86072789d40be37f1ecf7c77aa63a1fae16e5ad4141bb6fce349c4afd138b",
+            "annotations.parquet": "509cfee58d7d6bceb0e1bf2c4fecedd6a751cd524e6900474b0fd7f528d02c8e",
+            "summary.json": "06a0031e4058454e1d91e991902a69394122a7a4121afe62f11b9c4406b6e667"
+          }
+        }
+      }
+    },
+    "device": "cuda",
+    "torch_version": "2.11.0+cu128",
+    "train_seasons": [
+      2023,
+      2024
+    ],
+    "validation_seasons": [
+      2025
+    ],
+    "refit_seasons": [
+      2023,
+      2024,
+      2025
+    ],
+    "test_seasons": [
+      2026
+    ]
+  },
+  "selected": {
+    "candidate": 4,
+    "best_epoch": 8,
+    "examples": 294564,
+    "location_examples": 243774,
+    "action_log_loss": 0.7890757322311401,
+    "action_accuracy": 0.7056904441819095,
+    "top3_accuracy": 0.9590683179207236,
+    "macro_f1": 0.28833992769140127,
+    "multiclass_brier": 0.41070057366231477,
+    "location_rmse_norm": 0.11403734366619783,
+    "location_mean_distance_norm": 0.11199152562941989,
+    "selection_loss": 4.059416004821898
+  },
+  "test_dataset": {
+    "contract": "next-event-v1",
+    "actions": [
+      "bounce",
+      "free_kick",
+      "gather",
+      "ground_kick",
+      "handball",
+      "hard_ball_get",
+      "kick",
+      "kick_in",
+      "kick_in_play_on",
+      "loose_ball_get",
+      "mark",
+      "receive",
+      "end_possession"
+    ],
+    "numeric_features": [
+      "x_norm",
+      "y_norm",
+      "gap_seconds",
+      "elapsed_seconds",
+      "period_seconds",
+      "period",
+      "dx_norm",
+      "dy_norm",
+      "distance_to_goal_norm",
+      "angle_to_goal"
+    ],
+    "source_events": 324461,
+    "retained_events": 305444,
+    "source_possessions": 54892,
+    "retained_possessions": 51837,
+    "labelled_prefixes": 304870,
+    "location_targets": 253607,
+    "end_targets": 51263,
+    "censored_last_prefixes": 574,
+    "weighting": "Every labelled event prefix has equal weight.",
+    "selection": "Exclude reviewed episodes except censoring alone; retrospective archive-quality selection."
+  },
+  "test_provenance": {
+    "sources": {
+      "2026": {
+        "source_sha256": "679d97f96204dc3f8189fc94ad3d3cae3a7861145c8c6c0ad114951a45abf74f",
+        "source_filename": "chains_data_2026_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 1969,
+        "conflicting_shot_markers": 0,
+        "shot_conflict_possessions": 0,
+        "shot_conflict_locations": [],
+        "time_reversal_policy": "quarantine_quarter_v1",
+        "quarantined_rows": 1616,
+        "quarantined_quarters": [
+          {
+            "match_id": "CD_M20260140001",
+            "period": 1
+          },
+          {
+            "match_id": "CD_M20260140206",
+            "period": 2
+          },
+          {
+            "match_id": "CD_M20260142005",
+            "period": 3
+          }
+        ],
+        "processed_file_sha256": {
+          "events.parquet": "d199a570080efcb4327df4cee0b4afd238f882219165152a7061e2cf0b26f686",
+          "possessions.parquet": "f3aa2421d1b1140a46c994476d06587aec4a05319564bc243a7598dd9397fb7c",
+          "annotations.parquet": "5473a1c9ad24f9b59940e910f360042ceb930a5dd69104a48d4257a9ede9ea84",
+          "summary.json": "f081bb0925670c08c806165aef1529503a94a0df3409c6ebd82731808e54c84f"
+        }
+      }
+    }
+  },
+  "model_fingerprint": "f0c362df6743ea2c57cd5d5b022f2726b42564cd123c17b126b8fcadf88c5c45",
+  "results": [
+    {
+      "split": "validation",
+      "model": "transformer",
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7890757322311401,
+      "action_accuracy": 0.7056904441819095,
+      "top3_accuracy": 0.9590683179207236,
+      "macro_f1": 0.28833992769140127,
+      "multiclass_brier": 0.41070057366231477,
+      "location_rmse_norm": 0.11403734366619783,
+      "location_mean_distance_norm": 0.11199152562941989,
+      "selection_loss": 4.059416004821898
+    },
+    {
+      "split": "validation",
+      "model": "frequency_persistence",
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 1.8446042078149825,
+      "action_accuracy": 0.282081313398786,
+      "top3_accuracy": 0.6562139297402262,
+      "macro_f1": 0.03384896471443717,
+      "multiclass_brier": 0.8121373826092458,
+      "location_rmse_norm": 0.16302244454897882,
+      "location_mean_distance_norm": 0.14710121525713832,
+      "selection_loss": 9.38604348362389
+    },
+    {
+      "split": "validation",
+      "model": "transition",
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8859228811494271,
+      "action_accuracy": 0.6372197552993577,
+      "top3_accuracy": 0.953422685732133,
+      "macro_f1": 0.21731849087673671,
+      "multiclass_brier": 0.4691450183545328,
+      "location_rmse_norm": 0.14094494902416527,
+      "location_mean_distance_norm": 0.12887342106351055,
+      "selection_loss": 4.570559354771301
+    },
+    {
+      "split": "test",
+      "model": "transformer",
+      "examples": 304870,
+      "location_examples": 253607,
+      "action_log_loss": 0.7832662463188171,
+      "action_accuracy": 0.7077902056614295,
+      "top3_accuracy": 0.9599435825105783,
+      "macro_f1": 0.2963067680930612,
+      "multiclass_brier": 0.4082550707143663,
+      "location_rmse_norm": 0.11137764468517428,
+      "location_mean_distance_norm": 0.10844878665734249,
+      "selection_loss": 4.02770887627926
+    },
+    {
+      "split": "test",
+      "model": "frequency_persistence",
+      "examples": 304870,
+      "location_examples": 253607,
+      "action_log_loss": 1.8467874243855171,
+      "action_accuracy": 0.2778922163545118,
+      "top3_accuracy": 0.651307114507823,
+      "macro_f1": 0.033455598306942405,
+      "multiclass_brier": 0.813022525993031,
+      "location_rmse_norm": 0.16253840204948147,
+      "location_mean_distance_norm": 0.14736241245219944,
+      "selection_loss": 9.396475523977067
+    },
+    {
+      "split": "test",
+      "model": "transition",
+      "examples": 304870,
+      "location_examples": 253607,
+      "action_log_loss": 0.8868638122120052,
+      "action_accuracy": 0.6334142421359924,
+      "top3_accuracy": 0.9549283301079149,
+      "macro_f1": 0.21577390679366124,
+      "multiclass_brier": 0.47087905651286993,
+      "location_rmse_norm": 0.14130364121439545,
+      "location_mean_distance_norm": 0.1297202235509068,
+      "selection_loss": 4.575622702274421
+    }
+  ],
+  "limitations": [
+    "2026 is an already-observed project benchmark, not a pristine holdout.",
+    "Retrospective clean-episode selection excludes some difficult passages.",
+    "One shared model; no team identity or opponent-specific adaptation.",
+    "Prediction covers retained within-possession actions plus END, not every raw annotation.",
+    "Single-seed bounded search; no claim of state-of-the-art performance.",
+    "Location is a point prediction conditional on continuation, not a spatial distribution."
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "initial": [
+    {
+      "candidate": 0,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8036614060401917,
+      "action_accuracy": 0.7007780991567197,
+      "top3_accuracy": 0.9575372414823264,
+      "macro_f1": 0.27853175944086483,
+      "multiclass_brier": 0.4175956232708723,
+      "location_rmse_norm": 0.12359606564161067,
+      "location_mean_distance_norm": 0.12658652145336913,
+      "selection_loss": 4.141903095842569
+    },
+    {
+      "candidate": 1,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8044449687004089,
+      "action_accuracy": 0.7002349234801266,
+      "top3_accuracy": 0.9573946578672207,
+      "macro_f1": 0.27819228390741507,
+      "multiclass_brier": 0.4180470591473886,
+      "location_rmse_norm": 0.12289002015388845,
+      "location_mean_distance_norm": 0.12482178830447001,
+      "selection_loss": 4.145114863655933
+    },
+    {
+      "candidate": 2,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8038910031318665,
+      "action_accuracy": 0.7005845928219334,
+      "top3_accuracy": 0.957391263019242,
+      "macro_f1": 0.27830112007607977,
+      "multiclass_brier": 0.41766630330215776,
+      "location_rmse_norm": 0.12293226140386612,
+      "location_mean_distance_norm": 0.1258021826717982,
+      "selection_loss": 4.142387277063198
+    },
+    {
+      "candidate": 3,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7992671728134155,
+      "action_accuracy": 0.702400836490542,
+      "top3_accuracy": 0.9582060265341318,
+      "macro_f1": 0.28063372957746746,
+      "multiclass_brier": 0.41569675414786555,
+      "location_rmse_norm": 0.11903128689263724,
+      "location_mean_distance_norm": 0.11954770448137642,
+      "selection_loss": 4.115367150959715
+    },
+    {
+      "candidate": 4,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7948654890060425,
+      "action_accuracy": 0.7041152347197892,
+      "top3_accuracy": 0.9579004902160482,
+      "macro_f1": 0.28334017308245996,
+      "multiclass_brier": 0.41309571450018057,
+      "location_rmse_norm": 0.11864509975544836,
+      "location_mean_distance_norm": 0.12268489755022106,
+      "selection_loss": 4.092972544785661
+    },
+    {
+      "candidate": 5,
+      "best_epoch": 4,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7980755567550659,
+      "action_accuracy": 0.7025909479773496,
+      "top3_accuracy": 0.9583452153012588,
+      "macro_f1": 0.2800891589964207,
+      "multiclass_brier": 0.41488693353374445,
+      "location_rmse_norm": 0.11853075328453218,
+      "location_mean_distance_norm": 0.12044524466352852,
+      "selection_loss": 4.108908537059862
+    }
+  ],
+  "finalists": [
+    {
+      "candidate": 4,
+      "best_epoch": 8,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7890757322311401,
+      "action_accuracy": 0.7056904441819095,
+      "top3_accuracy": 0.9590683179207236,
+      "macro_f1": 0.28833992769140127,
+      "multiclass_brier": 0.41070057366231477,
+      "location_rmse_norm": 0.11403734366619783,
+      "location_mean_distance_norm": 0.11199152562941989,
+      "selection_loss": 4.059416004821898
+    },
+    {
+      "candidate": 5,
+      "best_epoch": 8,
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.7926238179206848,
+      "action_accuracy": 0.7050250539780829,
+      "top3_accuracy": 0.9588035197783843,
+      "macro_f1": 0.28583767481558553,
+      "multiclass_brier": 0.4124264433216067,
+      "location_rmse_norm": 0.11438292579446098,
+      "location_mean_distance_norm": 0.1116749224903531,
+      "selection_loss": 4.077502015397885
+    }
+  ],
+  "selected": {
+    "candidate": 4,
+    "best_epoch": 8,
+    "examples": 294564,
+    "location_examples": 243774,
+    "action_log_loss": 0.7890757322311401,
+    "action_accuracy": 0.7056904441819095,
+    "top3_accuracy": 0.9590683179207236,
+    "macro_f1": 0.28833992769140127,
+    "multiclass_brier": 0.41070057366231477,
+    "location_rmse_norm": 0.11403734366619783,
+    "location_mean_distance_norm": 0.11199152562941989,
+    "selection_loss": 4.059416004821898
+  }
+}

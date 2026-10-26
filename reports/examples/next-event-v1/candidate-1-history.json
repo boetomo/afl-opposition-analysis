@@ -1,0 +1,70 @@
+[
+  {
+    "epoch": 1,
+    "training_batch_objective": 5.175453305064804,
+    "validation": {
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8291192054748535,
+      "action_accuracy": 0.6912725248163387,
+      "top3_accuracy": 0.9554629893673361,
+      "macro_f1": 0.2736099856308409,
+      "multiclass_brier": 0.429422374225502,
+      "location_rmse_norm": 0.14001650106494984,
+      "location_mean_distance_norm": 0.1505784920996624,
+      "selection_loss": 4.285612528439217
+    },
+    "seconds": 16.170486599963624
+  },
+  {
+    "epoch": 2,
+    "training_batch_objective": 4.261291970081428,
+    "validation": {
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8158782720565796,
+      "action_accuracy": 0.6954312135902554,
+      "top3_accuracy": 0.9566172376800967,
+      "macro_f1": 0.27542810228013803,
+      "multiclass_brier": 0.4237282968779102,
+      "location_rmse_norm": 0.14301389598507563,
+      "location_mean_distance_norm": 0.16296657441860513,
+      "selection_loss": 4.222405256267973
+    },
+    "seconds": 16.146975099982228
+  },
+  {
+    "epoch": 3,
+    "training_batch_objective": 4.21010894352925,
+    "validation": {
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8094470500946045,
+      "action_accuracy": 0.6989041430724732,
+      "top3_accuracy": 0.9571536236607324,
+      "macro_f1": 0.2776291250748344,
+      "multiclass_brier": 0.4198251148507857,
+      "location_rmse_norm": 0.12356127339346128,
+      "location_mean_distance_norm": 0.12479312670512234,
+      "selection_loss": 4.170796523866484
+    },
+    "seconds": 16.115756699990015
+  },
+  {
+    "epoch": 4,
+    "training_batch_objective": 4.177260922130394,
+    "validation": {
+      "examples": 294564,
+      "location_examples": 243774,
+      "action_log_loss": 0.8044449687004089,
+      "action_accuracy": 0.7002349234801266,
+      "top3_accuracy": 0.9573946578672207,
+      "macro_f1": 0.27819228390741507,
+      "multiclass_brier": 0.4180470591473886,
+      "location_rmse_norm": 0.12289002015388845,
+      "location_mean_distance_norm": 0.12482178830447001,
+      "selection_loss": 4.145114863655933
+    },
+    "seconds": 15.52921080001397
+  }
+]

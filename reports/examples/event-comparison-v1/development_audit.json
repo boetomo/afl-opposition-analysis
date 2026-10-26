@@ -1,0 +1,15 @@
+{
+  "contract": "quarter-events-v1",
+  "quarters": 2580,
+  "tokens": 1031116,
+  "ball_actions": 935970,
+  "boundaries": 91330,
+  "gaps": 3816,
+  "ineligible_tokens": 54141,
+  "quarter_length_min": 294,
+  "quarter_length_median": 399.0,
+  "quarter_length_max": 510,
+  "history_cap": null,
+  "quality_policy": "Reviewed observations remain inputs; transitions touching them or gap tokens are not scored.",
+  "coordinate_frame": "Home attacking direction within each quarter; dimensionless venue-normalised coordinates."
+}

@@ -1,10 +1,62 @@
-# AFL Possession Threat Explorer
+# AFL Opposition Analysis
 
-An AFL opposition-analysis project for football analysts and researchers, exploring how teams move the ball after gaining possession and which patterns lead to shots and goals.
+A research project modelling AFL ball movement from public match-event data. It asks: **given the play observed so far, which team performs the next recorded action, what is that action, and where does it occur?** Separate models estimate whether a possession will lead to a shot or goal.
 
-**Status: research prototype.** The project includes a verified data pipeline, audited possession labels, and evaluated logistic-regression, XGBoost, LSTM and Seq2Event-inspired Transformer models for shots and goals. The interactive application and opposition report generation are planned.
+The chronological next-event model is shared across clubs and uses team identity and match history as context. Its forecasts provide a starting point for studying opponents' ball-movement choices. Automated opposition reports and an interactive application remain planned.
 
-## Results at a glance
+**Status:** the initial next-event experiments and shot/goal benchmarks are complete. A broader Optuna search is running separately; its final test results are not yet available. The tables below report the completed experiments.
+
+## Start here
+
+- **[Team-aware next-event prediction (Notebook 13)](notebooks/13_event_formulations.ipynb):** begin with the two model formulations, baseline comparisons, confusion matrices and a concrete forecast from an observed quarter.
+- **[Within-possession next-action prediction (Notebook 12)](notebooks/12_next_event_prediction.ipynb):** inspect how observed events become inputs and targets, then review the earlier model and its example forecast.
+- **[Shot and goal modelling (Notebook 11)](notebooks/11_transformer_retraining.ipynb):** review outcome prediction, validation tuning, calibration and comparisons with logistic regression, XGBoost and LSTMs.
+
+All three notebooks retain saved outputs for reading on GitHub. Notebooks 12 and 13 also run from the [committed example reports](reports/examples/) without raw match archives or model weights. To run those report walkthroughs locally after creating the virtual environment:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[notebook]"
+.\.venv\Scripts\python.exe -m notebook notebooks/13_event_formulations.ipynb
+```
+
+The [LSTM history comparison](notebooks/09_lstm_comparison.ipynb) and [goal-label audit](notebooks/06_goal_labels.ipynb) provide further methodological detail. Earlier modelling notebooks require their documented local experiment artifacts to rerun.
+
+## Team streams and chronological next-event prediction
+
+Two completed experiments evaluate an AFL adaptation of the central Seq2Event architecture and a decoder-only Transformer that distinguishes the acting team. Seq2Event reads fixed 40-token team streams with unmasked attention. The decoder reads both teams' events in order, uses causal attention and retains all observed history within each quarter.
+
+The initial search screens four configurations per formulation and continues two finalists, using one random seed. Each model is tuned on 2025, refitted on 2023–2025 and evaluated on the already-observed 2026 benchmark. Results below compare each formulation with its own transition baseline. **The tasks, populations, class weights and coordinate masks differ, so these rows are not a cross-task model ranking.**
+
+| Prediction task | Model | Accuracy ↑ | Log loss ↓ | Location RMSE ↓ |
+| --- | --- | ---: | ---: | ---: |
+| Team-stream next action | Transition baseline | 67.7% | 0.8540 | 0.1422 |
+| Team-stream next action | Seq2Event adaptation | 56.9% | 1.1069 | 0.1057 |
+| Chronological next team–action/boundary | Transition baseline | 57.9% | 1.2346 | 0.1992 |
+| Chronological next team–action/boundary | Causal decoder | 63.1% | 1.0795 | 0.1351 |
+
+Seq2Event action metrics exclude boundary targets. Decoder joint metrics include a neutral boundary class; team and action marginal diagnostics are reported separately. Location errors use dimensionless venue-normalised coordinates. These experiments do not yet produce validated tactical recommendations or an opposition report.
+
+Notebook 13 also includes a predetermined forecast from the first recorded 2026 quarter: the observed history, next team/action probabilities, predicted location and actual next event. This example was selected independently of prediction quality.
+
+[Formulations, fidelity and reproduction](docs/event-formulations.md) · [Examples, model selection and confusion matrices](notebooks/13_event_formulations.ipynb).
+
+## Next-action and location prediction
+
+Given the observed possession history, predict the next retained ball-control action and its location, or `end_possession`. One shared Transformer uses a growing history capped at a validation-selected length. It fits on 2023–2024, tunes on 2025, refits on 2023–2025 and evaluates the frozen model on 2026.
+
+The 2026 evaluation contains **304,870 labelled prefixes**. Each prefix has equal weight. Location errors are measured only for actual continuations and use venue-normalised coordinates.
+
+| Model | Action accuracy ↑ | Action log loss ↓ | Location RMSE ↓ |
+| --- | ---: | ---: | ---: |
+| Frequency + persistence | 27.8% | 1.8468 | 0.1625 |
+| Action transition | 63.3% | 0.8869 | 0.1413 |
+| Seq2Event-style Transformer | 70.8% | 0.7833 | 0.1114 |
+
+The Transformer's macro F1 is **0.296** across thirteen declared classes, including two with no test targets. Recall remains weak for several rare actions; read overall accuracy alongside the per-action results.
+
+This earlier within-possession experiment uses a bounded, single-seed search and the already-observed 2026 benchmark. It has no team-identity inputs and does not generate tactical recommendations. [Dataset, architecture and full evaluation](docs/next-event-prediction.md) · [Walkthrough with saved outputs](notebooks/12_next_event_prediction.ipynb).
+
+## Completed shot and goal benchmarks
 
 Models estimate whether the same team will take a subsequent shot or score a goal before possession ends, using states observed before the first explicit shot. Candidates fit on **2023–2024**, tune on **2025**, then refit on **2023–2025** before scoring **2026**.
 
@@ -22,13 +74,13 @@ The revised Transformer leads the single-model comparison on BCE, Brier score an
 
 **Interpretation:** 2026 is an already-observed shared benchmark. Search budgets differ between model families, and these point estimates do not establish statistical superiority or live-match reliability. [Full results, confusion matrices and limitations](docs/transformer-retraining.md).
 
-## Recommended notebooks
+## Broader next-event tuning with Optuna (in progress)
 
-1. [Revised Transformer training and benchmark evaluation](notebooks/11_transformer_retraining.ipynb) — the main results, hyperparameter search, three-seed selection, calibration and comparisons with earlier models.
-2. [LSTM embeddings and possession history](notebooks/09_lstm_comparison.ipynb) — the history versus no-history comparison, input sequences and validation procedure.
-3. [Goal labels and attribution audit](notebooks/06_goal_labels.ipynb) — concrete passages showing how shots, goals and turnovers become labels, with checks that future outcomes stay outside model inputs.
+Separate studies explore model size, embeddings, attention heads, dropout, learning rate and L2 for each next-event formulation. Each study has a budget of 60 trials, including pruned trials, followed by three-seed finalist selection and fresh training-plus-validation refits.
 
-The notebooks include saved outputs that can be read on GitHub without running training. Rerunning the analysis requires generating the local data and experiment artifacts using the commands below.
+The decoder study has completed its search, finalist selection and refits. The Seq2Event study is still running. Under the frozen protocol, final 2026 evaluation waits until both studies and all six refitted models are ready. The completed initial benchmarks above remain the available test results.
+
+[Search protocol and reproduction](docs/event-optuna.md) · [Study progress notebook](notebooks/14_optuna_event_models.ipynb). Saved progress outputs are dated snapshots, not a live training monitor. Model weights, checkpoints and study databases remain outside Git.
 
 ## AI-assisted development
 
@@ -44,9 +96,9 @@ Codex's assistance is acknowledged as part of the development process. The maint
 
 ## Project aim
 
-> Which recurring ball-movement patterns lead to goals, and how early can a threatening possession be identified?
+> How do opponents move the ball, which actions are likely next, and when does a possession become threatening?
 
-The project will combine summaries of an opponent's recent possessions with a model that estimates the probability of a goal before possession ends, using the events observed so far. Shot prediction provides a separate measure of chance creation and the initial modelling benchmark.
+The next-event models describe likely ball movement from observed history. The shot and goal models estimate possession outcomes. A planned reporting layer will combine these predictions with summaries of each team's observed patterns and supporting match examples. Forecasts alone do not establish which defensive response would improve an outcome.
 
 ## Planned output
 
@@ -296,3 +348,24 @@ Results are under `artifacts/transformer-retrained-2026/`; use `--resume` after 
 interruption. Notebook 11 explains each step and includes executed results. See the
 [retraining specification and comparison](docs/transformer-retraining.md) for the
 search space, calibration checks, metrics, confusion matrices and limitations.
+
+
+## Train next-action and location prediction
+
+Using the existing `[model,sequence]` extras and preprocessed seasons:
+
+```powershell
+.\.venv\Scripts\python.exe -m afl_opposition.next_event_experiment --audit-only
+.\.venv\Scripts\python.exe -m afl_opposition.next_event_experiment
+.\.venv\Scripts\python.exe -m afl_opposition.next_event_report --overwrite
+.\.venv\Scripts\python.exe -m notebook notebooks/12_next_event_prediction.ipynb
+```
+
+The first command audits the development examples without training. The experiment
+compares six configurations on 2025, continues two finalists, refits the selected
+model and evaluates 2026. `--resume` continues an interrupted run with unchanged
+sources and settings. Completed runs require a different `--output` directory.
+The report command explicitly replaces the committed example report with the
+new local run. Model weights and full predictions remain under the ignored
+`artifacts/next-event-v1/` directory. See [the specification](docs/next-event-prediction.md)
+for data conventions, reproducibility and the `forecast_next` inference API.

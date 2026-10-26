@@ -1,0 +1,129 @@
+{
+  "refit_seasons": [
+    2023,
+    2024,
+    2025
+  ],
+  "selected": {
+    "index": 3,
+    "config": {
+      "mode": "team_stream",
+      "heads": 2,
+      "dense_dim": 64,
+      "weight_decay": 0.0001,
+      "window": 40,
+      "width": 128,
+      "embedding_dim": 32,
+      "layers": 2,
+      "dropout": 0.1,
+      "learning_rate": 0.0003
+    },
+    "initial_loss": 0.1865556538105011,
+    "best_epoch": 11,
+    "validation_loss": 0.18044513463974
+  },
+  "class_weights": [
+    0.10433616489171982,
+    0.029340671375393867,
+    0.025070810690522194,
+    0.10058963298797607,
+    0.004674093797802925,
+    0.025960130617022514,
+    0.003202032996341586,
+    0.6094223856925964,
+    0.0737590566277504,
+    0.010650629177689552,
+    0.007188459858298302,
+    0.005805943161249161,
+    0.0
+  ],
+  "contract": "quarter-events-v1",
+  "config": {
+    "mode": "team_stream",
+    "heads": 2,
+    "dense_dim": 64,
+    "weight_decay": 0.0001,
+    "window": 40,
+    "width": 128,
+    "embedding_dim": 32,
+    "layers": 2,
+    "dropout": 0.1,
+    "learning_rate": 0.0003
+  },
+  "encoder": {
+    "mean": [
+      -0.07216473610554604,
+      0.0006106107440138573,
+      933.4872533406705,
+      2.4802198003129305,
+      0.8149520634359515,
+      8.26696891676687,
+      0.036348673664778,
+      0.0018812846055457967,
+      0.988434369369886,
+      0.0027587442497472845
+    ],
+    "scale": [
+      0.42977196390020656,
+      0.4539273889512256,
+      556.3220691378517,
+      1.1194332218128222,
+      0.38833644914872,
+      20.125998927977523,
+      0.12635256932292305,
+      0.13282590239637868,
+      0.615013146585324,
+      0.46668579010878564
+    ],
+    "clubs": [
+      "CD_T10",
+      "CD_T100",
+      "CD_T1000",
+      "CD_T1010",
+      "CD_T110",
+      "CD_T120",
+      "CD_T130",
+      "CD_T140",
+      "CD_T150",
+      "CD_T160",
+      "CD_T20",
+      "CD_T30",
+      "CD_T40",
+      "CD_T50",
+      "CD_T60",
+      "CD_T70",
+      "CD_T80",
+      "CD_T90"
+    ]
+  },
+  "numeric": [
+    "x",
+    "y",
+    "period_seconds",
+    "period",
+    "has_coordinates",
+    "gap_seconds",
+    "dx",
+    "dy",
+    "distance_to_goal",
+    "angle_to_goal"
+  ],
+  "actions": [
+    "bounce",
+    "free_kick",
+    "gather",
+    "ground_kick",
+    "handball",
+    "hard_ball_get",
+    "kick",
+    "kick_in",
+    "kick_in_play_on",
+    "loose_ball_get",
+    "mark",
+    "receive",
+    "boundary",
+    "gap"
+  ],
+  "fingerprint": "2ef8f4d68307134103003cb97c9fc31086eb2144b2664d228fd2ad2969584a5b",
+  "weights_sha256": "54c8687ae5febc0a5d6b384d3d9839de7618e80ef34fe5b1c0e5ee808ec8e524"
+}

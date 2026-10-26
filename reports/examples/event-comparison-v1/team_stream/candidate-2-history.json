@@ -1,0 +1,38 @@
+[
+  {
+    "epoch": 1,
+    "training_batch_objective": 0.21777060094362755,
+    "validation": {
+      "examples": 279961,
+      "location_examples": 199847,
+      "selection_loss": 0.19075316190719604,
+      "location_rmse_norm": 0.11272534918197052,
+      "location_mean_distance_norm": 0.10665697930569261,
+      "action_examples": 239055,
+      "action_accuracy": 0.5414862688502646,
+      "action_log_loss": 1.1870170831680298,
+      "action_macro_f1": 0.27013312823090024,
+      "action_supported_macro_f1": 0.27013312823090024,
+      "action_brier": 0.5615684317727992
+    },
+    "seconds": 49.25264859991148
+  },
+  {
+    "epoch": 2,
+    "training_batch_objective": 0.19154033785007032,
+    "validation": {
+      "examples": 279961,
+      "location_examples": 199847,
+      "selection_loss": 0.1883620023727417,
+      "location_rmse_norm": 0.11203216328502386,
+      "location_mean_distance_norm": 0.10798705977979284,
+      "action_examples": 239055,
+      "action_accuracy": 0.549894375771266,
+      "action_log_loss": 1.1808871030807495,
+      "action_macro_f1": 0.29274648905884104,
+      "action_supported_macro_f1": 0.29274648905884104,
+      "action_brier": 0.5589000235208185
+    },
+    "seconds": 49.64776509988587
+  }
+]

@@ -1,0 +1,14 @@
+actual,bounce,free_kick,gather,ground_kick,handball,hard_ball_get,kick,kick_in,kick_in_play_on,loose_ball_get,mark,receive,end_possession
+bounce,0,0,0,0,432,0,2462,0,0,0,0,0,0
+free_kick,0,0,0,0,331,0,1063,0,0,0,0,541,1982
+gather,0,0,0,0,14,0,10,0,0,0,30,457,4984
+ground_kick,0,0,0,0,16,0,22,0,0,0,1,308,730
+handball,0,0,0,0,31773,0,27574,0,0,0,0,69,0
+hard_ball_get,0,0,0,0,48,0,14,0,0,0,1,477,2116
+kick,0,0,0,0,14458,0,68633,0,0,0,0,0,0
+kick_in,0,0,0,0,0,0,0,0,0,0,0,0,0
+kick_in_play_on,0,0,0,0,0,0,0,0,0,0,0,0,0
+loose_ball_get,0,0,0,0,150,0,70,0,0,0,1,908,6288
+mark,0,0,0,0,0,0,3,0,0,0,332,0,29985
+receive,0,0,0,0,0,0,0,0,0,0,0,47491,0
+end_possession,0,0,0,0,1185,0,1034,0,0,0,3,9095,39473

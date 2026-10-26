@@ -1,0 +1,50 @@
+{
+  "contract": "quarter-events-v1",
+  "quarters": 869,
+  "tokens": 357223,
+  "ball_actions": 324461,
+  "boundaries": 31345,
+  "gaps": 1417,
+  "ineligible_tokens": 20434,
+  "quarter_length_min": 326,
+  "quarter_length_median": 411.0,
+  "quarter_length_max": 512,
+  "history_cap": null,
+  "quality_policy": "Reviewed observations remain inputs; transitions touching them or gap tokens are not scored.",
+  "coordinate_frame": "Home attacking direction within each quarter; dimensionless venue-normalised coordinates.",
+  "provenance": {
+    "sources": {
+      "2026": {
+        "source_sha256": "679d97f96204dc3f8189fc94ad3d3cae3a7861145c8c6c0ad114951a45abf74f",
+        "source_filename": "chains_data_2026_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 1969,
+        "conflicting_shot_markers": 0,
+        "shot_conflict_possessions": 0,
+        "shot_conflict_locations": [],
+        "time_reversal_policy": "quarantine_quarter_v1",
+        "quarantined_rows": 1616,
+        "quarantined_quarters": [
+          {
+            "match_id": "CD_M20260140001",
+            "period": 1
+          },
+          {
+            "match_id": "CD_M20260140206",
+            "period": 2
+          },
+          {
+            "match_id": "CD_M20260142005",
+            "period": 3
+          }
+        ],
+        "processed_file_sha256": {
+          "events.parquet": "d199a570080efcb4327df4cee0b4afd238f882219165152a7061e2cf0b26f686",
+          "possessions.parquet": "f3aa2421d1b1140a46c994476d06587aec4a05319564bc243a7598dd9397fb7c",
+          "annotations.parquet": "5473a1c9ad24f9b59940e910f360042ceb930a5dd69104a48d4257a9ede9ea84",
+          "summary.json": "f081bb0925670c08c806165aef1529503a94a0df3409c6ebd82731808e54c84f"
+        }
+      }
+    }
+  }
+}

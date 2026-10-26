@@ -1,0 +1,32 @@
+{
+  "forecast": {
+    "probabilities": {
+      "bounce": 0.02436748892068863,
+      "free_kick": 0.0048830159939825535,
+      "gather": 0.00012297208013478667,
+      "ground_kick": 0.000232712845900096,
+      "handball": 0.7186517715454102,
+      "hard_ball_get": 0.0003230472793802619,
+      "kick": 0.23768433928489685,
+      "kick_in": 4.9351592679158784e-06,
+      "kick_in_play_on": 4.8702258936828e-06,
+      "loose_ball_get": 0.0010925837559625506,
+      "mark": 8.752623216423672e-06,
+      "receive": 1.2167701243015472e-05,
+      "end_possession": 0.012611317448318005
+    },
+    "location_if_continuation": {
+      "x_norm": -0.2091289609670639,
+      "y_norm": 0.7512375712394714
+    },
+    "observed_events": 3,
+    "used_events": 3
+  },
+  "actual_next_action": "kick",
+  "actual_location": {
+    "x_norm": -0.21935483870967742,
+    "y_norm": 0.7058823529411765
+  },
+  "selection": "First eligible 2026 episode with at least four events; predict after event three.",
+  "model_fingerprint": "f0c362df6743ea2c57cd5d5b022f2726b42564cd123c17b126b8fcadf88c5c45"
+}

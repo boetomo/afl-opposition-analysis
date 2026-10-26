@@ -1,0 +1,90 @@
+{
+  "candidates": [
+    {
+      "index": 0,
+      "config": {
+        "mode": "team_stream",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 40,
+        "width": 64,
+        "embedding_dim": 8,
+        "layers": 1,
+        "dropout": 0.1,
+        "learning_rate": 0.001
+      },
+      "initial_loss": 0.18664595484733582
+    },
+    {
+      "index": 1,
+      "config": {
+        "mode": "team_stream",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 40,
+        "width": 64,
+        "embedding_dim": 16,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.001
+      },
+      "initial_loss": 0.18547192215919495,
+      "best_epoch": 8,
+      "validation_loss": 0.18114201724529266
+    },
+    {
+      "index": 2,
+      "config": {
+        "mode": "team_stream",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 40,
+        "width": 96,
+        "embedding_dim": 16,
+        "layers": 2,
+        "dropout": 0.25,
+        "learning_rate": 0.0003
+      },
+      "initial_loss": 0.1883620023727417
+    },
+    {
+      "index": 3,
+      "config": {
+        "mode": "team_stream",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 40,
+        "width": 128,
+        "embedding_dim": 32,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.0003
+      },
+      "initial_loss": 0.1865556538105011,
+      "best_epoch": 11,
+      "validation_loss": 0.18044513463974
+    }
+  ],
+  "winner": {
+    "index": 3,
+    "config": {
+      "mode": "team_stream",
+      "heads": 2,
+      "dense_dim": 64,
+      "weight_decay": 0.0001,
+      "window": 40,
+      "width": 128,
+      "embedding_dim": 32,
+      "layers": 2,
+      "dropout": 0.1,
+      "learning_rate": 0.0003
+    },
+    "initial_loss": 0.1865556538105011,
+    "best_epoch": 11,
+    "validation_loss": 0.18044513463974
+  }
+}

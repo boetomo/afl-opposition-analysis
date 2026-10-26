@@ -1,0 +1,90 @@
+{
+  "candidates": [
+    {
+      "index": 0,
+      "config": {
+        "mode": "joint",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 0,
+        "width": 64,
+        "embedding_dim": 8,
+        "layers": 1,
+        "dropout": 0.1,
+        "learning_rate": 0.001
+      },
+      "initial_loss": 6.237499713897705
+    },
+    {
+      "index": 1,
+      "config": {
+        "mode": "joint",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 0,
+        "width": 64,
+        "embedding_dim": 16,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.001
+      },
+      "initial_loss": 6.124627590179443,
+      "best_epoch": 11,
+      "validation_loss": 5.656648635864258
+    },
+    {
+      "index": 2,
+      "config": {
+        "mode": "joint",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 0,
+        "width": 96,
+        "embedding_dim": 16,
+        "layers": 2,
+        "dropout": 0.25,
+        "learning_rate": 0.0003
+      },
+      "initial_loss": 6.292792320251465
+    },
+    {
+      "index": 3,
+      "config": {
+        "mode": "joint",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 0,
+        "width": 128,
+        "embedding_dim": 32,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.0003
+      },
+      "initial_loss": 6.180821895599365,
+      "best_epoch": 12,
+      "validation_loss": 5.702706813812256
+    }
+  ],
+  "winner": {
+    "index": 1,
+    "config": {
+      "mode": "joint",
+      "heads": 2,
+      "dense_dim": 64,
+      "weight_decay": 0.0001,
+      "window": 0,
+      "width": 64,
+      "embedding_dim": 16,
+      "layers": 2,
+      "dropout": 0.1,
+      "learning_rate": 0.001
+    },
+    "initial_loss": 6.124627590179443,
+    "best_epoch": 11,
+    "validation_loss": 5.656648635864258
+  }
+}

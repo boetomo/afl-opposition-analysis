@@ -1,0 +1,462 @@
+{
+  "plan": {
+    "contract": "quarter-events-v1",
+    "modes": [
+      "joint",
+      "team_stream"
+    ],
+    "seed": 2026,
+    "device": "cuda",
+    "torch": "2.11.0+cu128",
+    "sources": {
+      "quarter_events.py": "e54a899acbc75f0e95d34ded2aaf736a497cdded8905cd6294cc6fd85f70493f",
+      "event_models.py": "6cb11f546b0885417c1909367ddbf14dbb3d2cb1bef3664e851659b942ad2e8a",
+      "event_comparison.py": "859f03d550d7229797850c066ce9e3065c364f939422eb2e6ef4257f45eef228",
+      "next_event_model.py": "849592716e6c36fc754050c3eb650d0f617fc5c1bbb96755295f27791e458cae",
+      "next_event_experiment.py": "5c14c53557679370a2275604249ac4851ad0fc3de49def1930938c6f3f015dc9",
+      "sequence.py": "9b2615823158fe8230b2693e7ba1cf63dfb25beec1289ede869aca097dbe2912",
+      "baseline.py": "8515e5d817396e0456c3bffcb9de2b8c65440329198537ba07aaf2b146dfc51f",
+      "preprocess.py": "5a1f1c5f0ed11aa36bb559581c509c2419dcc89eeed10904cb71f3ae27dc48ed",
+      "action_rules.py": "eea2ac2ae76793ce97fa68ad4e2a03be27c1620e87347eac44ac9587a5d47e6c",
+      "data.py": "ec5dd294eb603de5cf216d5fd6bf80a2cc91ad16398991f9e5023185a502698f"
+    },
+    "provenance": {
+      "sources": {
+        "2023": {
+          "source_sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d",
+          "source_filename": "chains_data_2023_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 2000,
+          "conflicting_shot_markers": 0,
+          "shot_conflict_possessions": 0,
+          "shot_conflict_locations": [],
+          "time_reversal_policy": "reject",
+          "quarantined_rows": 0,
+          "quarantined_quarters": [],
+          "processed_file_sha256": {
+            "events.parquet": "2fa7f9a714f58fb026743e0fe0a33a4d5bb19f86b3d345c1e798ee118780e380",
+            "possessions.parquet": "7da2aea48aea8cd50755d0669d00db997070f2f7855077fe71bf79db051d9e7d",
+            "annotations.parquet": "48c972136563688c7b08a17be17332cd0e98b87efc5bf6bd110fff6a166cbcdc",
+            "summary.json": "c0c3cd7b519b7b1bb9773fe39dc487224ab5d44fd33e0139b7b284116df5387c"
+          }
+        },
+        "2024": {
+          "source_sha256": "50bd3b31efe3407d94ba9b80f0d04dd69f7012f3099c3aba1fa41bf53dc3c74e",
+          "source_filename": "chains_data_2024_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 1760,
+          "conflicting_shot_markers": 1,
+          "shot_conflict_possessions": 1,
+          "shot_conflict_locations": [
+            {
+              "match_id": "CD_M20240142308",
+              "period": 1,
+              "chain_number": 60,
+              "display_order": 459
+            }
+          ],
+          "time_reversal_policy": "quarantine_quarter_v1",
+          "quarantined_rows": 589,
+          "quarantined_quarters": [
+            {
+              "match_id": "CD_M20240141606",
+              "period": 3
+            }
+          ],
+          "processed_file_sha256": {
+            "events.parquet": "04e7f5a5ad3a47e4fd22aef303335958759c760f6111e4420e9a73e3c7856e6d",
+            "possessions.parquet": "d38f41c1a77b6afd12a7ddc32147a225b969920e5ec68bf32b0dddcceeaf1a07",
+            "annotations.parquet": "6217ab3aa2230bfc7eddf7f5a67b1a8b407c7e937bc81f20b13bcc91c298804b",
+            "summary.json": "bf4792b189ee2f690e2a344e5b899875c7a497fa15db3a105cbcd71bd86e5953"
+          }
+        },
+        "2025": {
+          "source_sha256": "1e355570f558b28520699b8e621d0ea6b022f7697b14f37ac25fd624041bed0f",
+          "source_filename": "chains_data_2025_all.parquet",
+          "shot_marker_policy": "exclude_touched_possessions_v1",
+          "verified_retrospective_shot_markers": 1843,
+          "conflicting_shot_markers": 1,
+          "shot_conflict_possessions": 2,
+          "shot_conflict_locations": [
+            {
+              "match_id": "CD_M20250140303",
+              "period": 4,
+              "chain_number": 205,
+              "display_order": 1824
+            }
+          ],
+          "time_reversal_policy": "quarantine_quarter_v1",
+          "quarantined_rows": 1027,
+          "quarantined_quarters": [
+            {
+              "match_id": "CD_M20250140608",
+              "period": 4
+            },
+            {
+              "match_id": "CD_M20250141305",
+              "period": 4
+            }
+          ],
+          "processed_file_sha256": {
+            "events.parquet": "44ddd544caa6c206427c48975f8f66bdaf3062a11686def40659cc22a58a85f0",
+            "possessions.parquet": "c2a86072789d40be37f1ecf7c77aa63a1fae16e5ad4141bb6fce349c4afd138b",
+            "annotations.parquet": "509cfee58d7d6bceb0e1bf2c4fecedd6a751cd524e6900474b0fd7f528d02c8e",
+            "summary.json": "06a0031e4058454e1d91e991902a69394122a7a4121afe62f11b9c4406b6e667"
+          }
+        }
+      }
+    },
+    "smoke": false,
+    "split": {
+      "train": [
+        2023,
+        2024
+      ],
+      "validation": [
+        2025
+      ],
+      "refit": [
+        2023,
+        2024,
+        2025
+      ],
+      "test": [
+        2026
+      ]
+    },
+    "initial_epochs": 2,
+    "max_epochs": 12,
+    "configurations": {
+      "joint": [
+        {
+          "mode": "joint",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 0,
+          "width": 64,
+          "embedding_dim": 8,
+          "layers": 1,
+          "dropout": 0.1,
+          "learning_rate": 0.001
+        },
+        {
+          "mode": "joint",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 0,
+          "width": 64,
+          "embedding_dim": 16,
+          "layers": 2,
+          "dropout": 0.1,
+          "learning_rate": 0.001
+        },
+        {
+          "mode": "joint",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 0,
+          "width": 96,
+          "embedding_dim": 16,
+          "layers": 2,
+          "dropout": 0.25,
+          "learning_rate": 0.0003
+        },
+        {
+          "mode": "joint",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 0,
+          "width": 128,
+          "embedding_dim": 32,
+          "layers": 2,
+          "dropout": 0.1,
+          "learning_rate": 0.0003
+        }
+      ],
+      "team_stream": [
+        {
+          "mode": "team_stream",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 40,
+          "width": 64,
+          "embedding_dim": 8,
+          "layers": 1,
+          "dropout": 0.1,
+          "learning_rate": 0.001
+        },
+        {
+          "mode": "team_stream",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 40,
+          "width": 64,
+          "embedding_dim": 16,
+          "layers": 2,
+          "dropout": 0.1,
+          "learning_rate": 0.001
+        },
+        {
+          "mode": "team_stream",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 40,
+          "width": 96,
+          "embedding_dim": 16,
+          "layers": 2,
+          "dropout": 0.25,
+          "learning_rate": 0.0003
+        },
+        {
+          "mode": "team_stream",
+          "heads": 2,
+          "dense_dim": 64,
+          "weight_decay": 0.0001,
+          "window": 40,
+          "width": 128,
+          "embedding_dim": 32,
+          "layers": 2,
+          "dropout": 0.1,
+          "learning_rate": 0.0003
+        }
+      ]
+    },
+    "note": "Different targets, losses and data streams: no cross-task winner or causal ablation claim."
+  },
+  "selected": {
+    "joint": {
+      "index": 1,
+      "config": {
+        "mode": "joint",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 0,
+        "width": 64,
+        "embedding_dim": 16,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.001
+      },
+      "initial_loss": 6.124627590179443,
+      "best_epoch": 11,
+      "validation_loss": 5.656648635864258
+    },
+    "team_stream": {
+      "index": 3,
+      "config": {
+        "mode": "team_stream",
+        "heads": 2,
+        "dense_dim": 64,
+        "weight_decay": 0.0001,
+        "window": 40,
+        "width": 128,
+        "embedding_dim": 32,
+        "layers": 2,
+        "dropout": 0.1,
+        "learning_rate": 0.0003
+      },
+      "initial_loss": 0.1865556538105011,
+      "best_epoch": 11,
+      "validation_loss": 0.18044513463974
+    }
+  },
+  "results": [
+    {
+      "mode": "joint",
+      "split": "validation",
+      "model": "transformer",
+      "examples": 323536,
+      "location_examples": 294117,
+      "selection_loss": 5.656648635864258,
+      "location_rmse_norm": 0.13961867043661097,
+      "location_mean_distance_norm": 0.1421140175099974,
+      "joint_examples": 323536,
+      "joint_accuracy": 0.6218473369269572,
+      "joint_log_loss": 1.1034059524536133,
+      "joint_macro_f1": 0.30458979835961075,
+      "joint_supported_macro_f1": 0.30458979835961075,
+      "joint_brier": 0.4921983575502329,
+      "team_given_action_examples": 294117,
+      "team_given_action_accuracy": 0.8764199281238418,
+      "team_given_action_log_loss": 0.2596432566642761,
+      "team_given_action_macro_f1": 0.876364811191016,
+      "team_given_action_supported_macro_f1": 0.876364811191016,
+      "team_given_action_brier": 0.16202394007943274,
+      "action_given_action_examples": 294117,
+      "action_given_action_accuracy": 0.6754556860025092,
+      "action_given_action_log_loss": 0.8420524001121521,
+      "action_given_action_macro_f1": 0.36273722664703073,
+      "action_given_action_supported_macro_f1": 0.36273722664703073,
+      "action_given_action_brier": 0.434414182955585,
+      "boundary_rate": 0.09092960288808664
+    },
+    {
+      "mode": "joint",
+      "split": "validation",
+      "model": "transition",
+      "examples": 323536,
+      "location_examples": 294117,
+      "selection_loss": 6.420665587264526,
+      "location_rmse_norm": 0.19828752900052224,
+      "location_mean_distance_norm": 0.17940905363780107,
+      "joint_examples": 323536,
+      "joint_accuracy": 0.576767345828594,
+      "joint_log_loss": 1.2444756116528009,
+      "joint_macro_f1": 0.2363893591220617,
+      "joint_supported_macro_f1": 0.2363893591220617,
+      "joint_brier": 0.5478847815655519,
+      "team_given_action_examples": 294117,
+      "team_given_action_accuracy": 0.8666687066711547,
+      "team_given_action_log_loss": 0.2865319188262627,
+      "team_given_action_macro_f1": 0.8665907443236491,
+      "team_given_action_supported_macro_f1": 0.8665907443236491,
+      "team_given_action_brier": 0.18126364626922234,
+      "action_given_action_examples": 294117,
+      "action_given_action_accuracy": 0.6495306289673838,
+      "action_given_action_log_loss": 0.9160770385279499,
+      "action_given_action_macro_f1": 0.278489821981,
+      "action_given_action_supported_macro_f1": 0.278489821981,
+      "action_given_action_brier": 0.46707080380936994,
+      "boundary_rate": 0.09092960288808664
+    },
+    {
+      "mode": "team_stream",
+      "split": "validation",
+      "model": "transformer",
+      "examples": 279961,
+      "location_examples": 199847,
+      "selection_loss": 0.18044513463974,
+      "location_rmse_norm": 0.10651149470506655,
+      "location_mean_distance_norm": 0.09803665759353654,
+      "action_examples": 239055,
+      "action_accuracy": 0.5707138524607308,
+      "action_log_loss": 1.1374365091323853,
+      "action_macro_f1": 0.31372623230317864,
+      "action_supported_macro_f1": 0.31372623230317864,
+      "action_brier": 0.5468502524027803
+    },
+    {
+      "mode": "team_stream",
+      "split": "validation",
+      "model": "transition",
+      "examples": 279961,
+      "location_examples": 199847,
+      "selection_loss": 0.25330810408930327,
+      "location_rmse_norm": 0.14202335189764248,
+      "location_mean_distance_norm": 0.13004750621898326,
+      "action_examples": 239055,
+      "action_accuracy": 0.6759323168308549,
+      "action_log_loss": 0.8586892768166238,
+      "action_macro_f1": 0.30474116527506034,
+      "action_supported_macro_f1": 0.30474116527506034,
+      "action_brier": 0.4341128191382067
+    },
+    {
+      "mode": "joint",
+      "split": "test",
+      "model": "transformer",
+      "examples": 333883,
+      "location_examples": 304298,
+      "selection_loss": 5.532842904770797,
+      "location_rmse_norm": 0.13514318901090205,
+      "location_mean_distance_norm": 0.1378991733305612,
+      "joint_examples": 333883,
+      "joint_accuracy": 0.6308317584303483,
+      "joint_log_loss": 1.0795398950576782,
+      "joint_macro_f1": 0.3158592550150536,
+      "joint_supported_macro_f1": 0.3158592550150536,
+      "joint_brier": 0.48462688087233485,
+      "team_given_action_examples": 304298,
+      "team_given_action_accuracy": 0.8806268854872527,
+      "team_given_action_log_loss": 0.25341299176216125,
+      "team_given_action_macro_f1": 0.8806010173858211,
+      "team_given_action_supported_macro_f1": 0.8806010173858211,
+      "team_given_action_brier": 0.15765993299939784,
+      "action_given_action_examples": 304298,
+      "action_given_action_accuracy": 0.6797415691197445,
+      "action_given_action_log_loss": 0.8306379318237305,
+      "action_given_action_macro_f1": 0.3605995415385233,
+      "action_given_action_supported_macro_f1": 0.3605995415385233,
+      "action_given_action_brier": 0.43023898713002917,
+      "boundary_rate": 0.08860888395036584
+    },
+    {
+      "mode": "joint",
+      "split": "test",
+      "model": "transition",
+      "examples": 333883,
+      "location_examples": 304298,
+      "selection_loss": 6.372044028441619,
+      "location_rmse_norm": 0.19920749104404387,
+      "location_mean_distance_norm": 0.1792113662313745,
+      "joint_examples": 333883,
+      "joint_accuracy": 0.5785589562810924,
+      "joint_log_loss": 1.234567307479515,
+      "joint_macro_f1": 0.23660479432200573,
+      "joint_supported_macro_f1": 0.23660479432200573,
+      "joint_brier": 0.5464775597504212,
+      "team_given_action_examples": 304298,
+      "team_given_action_accuracy": 0.8702817632715298,
+      "team_given_action_log_loss": 0.2818702168925604,
+      "team_given_action_macro_f1": 0.8699563077901935,
+      "team_given_action_supported_macro_f1": 0.8699563077901935,
+      "team_given_action_brier": 0.17743938199289017,
+      "action_given_action_examples": 304298,
+      "action_given_action_accuracy": 0.64808838704165,
+      "action_given_action_log_loss": 0.9144831683964468,
+      "action_given_action_macro_f1": 0.27730350863029135,
+      "action_given_action_supported_macro_f1": 0.27730350863029135,
+      "action_given_action_brier": 0.46771777922829344,
+      "boundary_rate": 0.08860888395036584
+    },
+    {
+      "mode": "team_stream",
+      "split": "test",
+      "model": "transformer",
+      "examples": 290311,
+      "location_examples": 209513,
+      "selection_loss": 0.17663425466178356,
+      "location_rmse_norm": 0.1056916647028987,
+      "location_mean_distance_norm": 0.09669469819632386,
+      "action_examples": 248987,
+      "action_accuracy": 0.5694594496901445,
+      "action_log_loss": 1.1068743467330933,
+      "action_macro_f1": 0.3164538047295548,
+      "action_supported_macro_f1": 0.3164538047295548,
+      "action_brier": 0.5389534429124249
+    },
+    {
+      "mode": "team_stream",
+      "split": "test",
+      "model": "transition",
+      "examples": 290311,
+      "location_examples": 209513,
+      "selection_loss": 0.25102676457315054,
+      "location_rmse_norm": 0.14217161052144905,
+      "location_mean_distance_norm": 0.13064746762613458,
+      "action_examples": 248987,
+      "action_accuracy": 0.6771638679931081,
+      "action_log_loss": 0.8540366796125112,
+      "action_macro_f1": 0.30529542277245625,
+      "action_supported_macro_f1": 0.30529542277245625,
+      "action_brier": 0.4326701496645238
+    }
+  ],
+  "limitations": [
+    "Different tasks; raw scores and selection objectives are not a direct model ranking.",
+    "2026 is an already-observed benchmark, not an untouched holdout.",
+    "Retrospective quality masks can favour cleaner passages.",
+    "Single-seed bounded hyperparameter search.",
+    "Coordinate outputs are points, not spatial distributions.",
+    "Team streams are an AFL adaptation, not an exact reproduction on soccer data."
+  ],
+  "status": "complete"
+}

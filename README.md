@@ -4,15 +4,16 @@ A research project modelling AFL ball movement from public match-event data. It 
 
 The chronological next-event model is shared across clubs and uses team identity and match history as context. Its forecasts provide a starting point for studying opponents' ball-movement choices. Automated opposition reports and an interactive application remain planned.
 
-**Status:** the initial next-event experiments and shot/goal benchmarks are complete. A broader Optuna search is running separately; its final test results are not yet available. The tables below report the completed experiments.
+**Status:** the Optuna-tuned chronological decoder has completed evaluation across three seeds. The Seq2Event Optuna study is paused and remains unfinished. Initial next-event experiments and shot/goal benchmarks are also available below.
 
 ## Start here
 
-- **[Team-aware next-event prediction (Notebook 13)](notebooks/13_event_formulations.ipynb):** begin with the two model formulations, baseline comparisons, confusion matrices and a concrete forecast from an observed quarter.
+- **[Tuned decoder results (Notebook 15)](notebooks/15_decoder_evaluation.ipynb):** review the completed 60-trial search, three-seed evaluation, confusion matrices and comparison with the earlier decoder.
+- **[Team-aware next-event prediction (Notebook 13)](notebooks/13_event_formulations.ipynb):** inspect the two model formulations, baseline comparisons, confusion matrices and a concrete forecast from an observed quarter.
 - **[Within-possession next-action prediction (Notebook 12)](notebooks/12_next_event_prediction.ipynb):** inspect how observed events become inputs and targets, then review the earlier model and its example forecast.
 - **[Shot and goal modelling (Notebook 11)](notebooks/11_transformer_retraining.ipynb):** review outcome prediction, validation tuning, calibration and comparisons with logistic regression, XGBoost and LSTMs.
 
-All three notebooks retain saved outputs for reading on GitHub. Notebooks 12 and 13 also run from the [committed example reports](reports/examples/) without raw match archives or model weights. To run those report walkthroughs locally after creating the virtual environment:
+These notebooks retain saved outputs for reading on GitHub. Notebooks 12, 13 and 15 also run from the [committed example reports](reports/examples/) without raw match archives or model weights. To run those report walkthroughs locally after creating the virtual environment:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -e ".[notebook]"
@@ -74,13 +75,21 @@ The revised Transformer leads the single-model comparison on BCE, Brier score an
 
 **Interpretation:** 2026 is an already-observed shared benchmark. Search budgets differ between model families, and these point estimates do not establish statistical superiority or live-match reliability. [Full results, confusion matrices and limitations](docs/transformer-retraining.md).
 
-## Broader next-event tuning with Optuna (in progress)
+## Optuna-tuned decoder results
 
-Separate studies explore model size, embeddings, attention heads, dropout, learning rate and L2 for each next-event formulation. Each study has a budget of 60 trials, including pruned trials, followed by three-seed finalist selection and fresh training-plus-validation refits.
+The decoder completed 60 trials, three-seed finalist selection and three fresh 56-epoch refits. Selection used 2025 only. All three refits were frozen before this evaluation on the shared 2026 benchmark.
 
-The decoder study has completed its search, finalist selection and refits. The Seq2Event study is still running. Under the frozen protocol, final 2026 evaluation waits until both studies and all six refitted models are ready. The completed initial benchmarks above remain the available test results.
+| Model | Next team/action accuracy ↑ | Log loss ↓ | Macro F1 ↑ | Location RMSE ↓ |
+| --- | ---: | ---: | ---: | ---: |
+| Transition baseline | 57.86% | 1.2346 | 0.2366 | 0.1992 |
+| Earlier decoder, one seed | 63.08% | 1.0795 | 0.3159 | 0.1351 |
+| Tuned decoder, three-seed mean | **63.61%** | **1.0577** | **0.3338** | **0.1249** |
 
-[Search protocol and reproduction](docs/event-optuna.md) · [Study progress notebook](notebooks/14_optuna_event_models.ipynb). Saved progress outputs are dated snapshots, not a live training monitor. Model weights, checkpoints and study databases remain outside Git.
+These rows use the same 333,883 next-event targets. Accuracy improves by 0.53 percentage points and location RMSE falls by 7.6% relative to the earlier decoder. Across seeds, accuracy SD is 0.074 percentage points and location RMSE SD is 0.00161. Rare-action recall remains weak, and 2026 is an already-observed benchmark.
+
+**Evaluation-order amendment:** the Seq2Event study is paused after epoch 32 of trial 36. The decoder was evaluated separately before that study finished, with its configuration, seeds and weights unchanged. This changes the original combined evaluation order. Seq2Event's search remains frozen for resumption, and the combined experiment is not marked complete.
+
+[Results and reproduction](docs/decoder-evaluation.md) · [Executed decoder notebook](notebooks/15_decoder_evaluation.ipynb) · [Search protocol](docs/event-optuna.md) · [Combined-study progress](notebooks/14_optuna_event_models.ipynb). Saved progress outputs are dated snapshots. Model weights, checkpoints and study databases remain outside Git.
 
 ## AI-assisted development
 

@@ -1,0 +1,348 @@
+{
+  "candidates": [
+    {
+      "trial": 38,
+      "config": {
+        "mode": "joint",
+        "width": 64,
+        "embedding_dim": 8,
+        "club_embedding_dim": 4,
+        "heads": 4,
+        "layers": 4,
+        "ff_multiplier": 2,
+        "dense_dim": 128,
+        "dropout": 0.2612745676417207,
+        "learning_rate": 0.0018998040060514117,
+        "weight_decay": 0.0,
+        "window": 0
+      },
+      "validation_loss": 5.53111842685073,
+      "seeds": [
+        {
+          "best_epoch": 50,
+          "validation_loss": 5.53111842685073,
+          "epochs_completed": 60,
+          "stopping_reason": "early_stopping",
+          "seed": 2026,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.2612745676417207,
+            "learning_rate": 0.0018998040060514117,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 57,
+          "validation_loss": 5.536595575903277,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2027,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.2612745676417207,
+            "learning_rate": 0.0018998040060514117,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 56,
+          "validation_loss": 5.528116090479032,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2028,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.2612745676417207,
+            "learning_rate": 0.0018998040060514117,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        }
+      ],
+      "mean_validation_loss": 5.531943364411013,
+      "std_validation_loss": 0.004299512733877037,
+      "refit_epochs": 56
+    },
+    {
+      "trial": 46,
+      "config": {
+        "mode": "joint",
+        "width": 64,
+        "embedding_dim": 8,
+        "club_embedding_dim": 4,
+        "heads": 4,
+        "layers": 3,
+        "ff_multiplier": 2,
+        "dense_dim": 128,
+        "dropout": 0.27829518190790314,
+        "learning_rate": 0.0017659632647998233,
+        "weight_decay": 0.0,
+        "window": 0
+      },
+      "validation_loss": 5.5359125279302495,
+      "seeds": [
+        {
+          "best_epoch": 58,
+          "validation_loss": 5.5359125279302495,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2026,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 3,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.27829518190790314,
+            "learning_rate": 0.0017659632647998233,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 57,
+          "validation_loss": 5.5401524890527485,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2027,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 3,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.27829518190790314,
+            "learning_rate": 0.0017659632647998233,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 56,
+          "validation_loss": 5.541321034846761,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2028,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 8,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 3,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.27829518190790314,
+            "learning_rate": 0.0017659632647998233,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        }
+      ],
+      "mean_validation_loss": 5.539128683943253,
+      "std_validation_loss": 0.002845895191879008,
+      "refit_epochs": 57
+    },
+    {
+      "trial": 56,
+      "config": {
+        "mode": "joint",
+        "width": 64,
+        "embedding_dim": 32,
+        "club_embedding_dim": 4,
+        "heads": 4,
+        "layers": 4,
+        "ff_multiplier": 2,
+        "dense_dim": 128,
+        "dropout": 0.32847095596142056,
+        "learning_rate": 0.0017582794786819892,
+        "weight_decay": 0.0,
+        "window": 0
+      },
+      "validation_loss": 5.542191628034704,
+      "seeds": [
+        {
+          "best_epoch": 58,
+          "validation_loss": 5.542191628034704,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2026,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 32,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.32847095596142056,
+            "learning_rate": 0.0017582794786819892,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 39,
+          "validation_loss": 5.545159380533748,
+          "epochs_completed": 49,
+          "stopping_reason": "early_stopping",
+          "seed": 2027,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 32,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.32847095596142056,
+            "learning_rate": 0.0017582794786819892,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        },
+        {
+          "best_epoch": 56,
+          "validation_loss": 5.541562609050645,
+          "epochs_completed": 60,
+          "stopping_reason": "epoch_limit",
+          "seed": 2028,
+          "config": {
+            "mode": "joint",
+            "width": 64,
+            "embedding_dim": 32,
+            "club_embedding_dim": 4,
+            "heads": 4,
+            "layers": 4,
+            "ff_multiplier": 2,
+            "dense_dim": 128,
+            "dropout": 0.32847095596142056,
+            "learning_rate": 0.0017582794786819892,
+            "weight_decay": 0.0,
+            "window": 0
+          }
+        }
+      ],
+      "mean_validation_loss": 5.542971205873033,
+      "std_validation_loss": 0.0019209366152800915,
+      "refit_epochs": 56
+    }
+  ],
+  "winner": {
+    "trial": 38,
+    "config": {
+      "mode": "joint",
+      "width": 64,
+      "embedding_dim": 8,
+      "club_embedding_dim": 4,
+      "heads": 4,
+      "layers": 4,
+      "ff_multiplier": 2,
+      "dense_dim": 128,
+      "dropout": 0.2612745676417207,
+      "learning_rate": 0.0018998040060514117,
+      "weight_decay": 0.0,
+      "window": 0
+    },
+    "validation_loss": 5.53111842685073,
+    "seeds": [
+      {
+        "best_epoch": 50,
+        "validation_loss": 5.53111842685073,
+        "epochs_completed": 60,
+        "stopping_reason": "early_stopping",
+        "seed": 2026,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      },
+      {
+        "best_epoch": 57,
+        "validation_loss": 5.536595575903277,
+        "epochs_completed": 60,
+        "stopping_reason": "epoch_limit",
+        "seed": 2027,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      },
+      {
+        "best_epoch": 56,
+        "validation_loss": 5.528116090479032,
+        "epochs_completed": 60,
+        "stopping_reason": "epoch_limit",
+        "seed": 2028,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      }
+    ],
+    "mean_validation_loss": 5.531943364411013,
+    "std_validation_loss": 0.004299512733877037,
+    "refit_epochs": 56
+  }
+}

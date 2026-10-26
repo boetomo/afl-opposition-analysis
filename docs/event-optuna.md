@@ -32,9 +32,15 @@ J = 5\,\frac{1}{N}\sum_{i=1}^{N}w_{y_i}[-\log p(y_i)]
 
 Here, \(N\) is the number of eligible targets, \(\mathcal S\) contains the \(M\) targets with valid coordinate supervision, and \(w_{y_i}\) is the target class weight. Seq2Event uses inverse-frequency action weights calculated from training targets, normalised to sum to one, with boundary weight zero. The decoder uses unit weights. Coordinate masks follow each formulation's existing contract. Validation aggregates errors over the entire scored dataset. Training averages the batch objectives. Class weights and the coefficient five are not optimisation variables.
 
-Candidates fit on 2023–2024 and select checkpoints using 2025. The three strongest completed trials are fitted again from scratch with seeds 2026, 2027 and 2028, without Optuna pruning. The configuration with the lowest mean best validation objective wins. Its refit duration is the median best epoch across those three seeds. Three fresh models then fit on 2023–2025 for that fixed duration, with newly fitted development-set scaling and class weights. Both studies and all six model exports finish before 2026 is loaded.
+Candidates fit on 2023–2024 and select checkpoints using 2025. The three strongest completed trials are fitted again from scratch with seeds 2026, 2027 and 2028, without Optuna pruning. The configuration with the lowest mean best validation objective wins. Its refit duration is the median best epoch across those three seeds. Three fresh models then fit on 2023–2025 for that fixed duration, with newly fitted development-set scaling and class weights. The original combined runner requires both studies and all six model exports to finish before loading 2026. The separate decoder evaluation described below changes that order without changing the frozen training protocol.
 
 Test reporting includes every seed, mean and sample standard deviation, task-specific transition baselines, full confusion matrices and per-class precision/recall/F1. No seed is selected based on test performance. The standard deviation describes training randomness, not uncertainty from sampling different matches. The transition baseline retains the existing fixed additive smoothing of 0.5.
+
+## Decoder-first evaluation amendment (26 October 2026)
+
+The decoder completed all 60 trials, finalist selection and three refits. Seq2Event was paused after epoch 32 of trial 36. A separate evaluator scored the already-frozen decoder models and baseline on 2026 while preserving the source experiment and resumable Seq2Event state. The combined study remains unfinished. This amendment makes decoder test results available before Seq2Event selection finishes, so its remaining search must stay fixed. No seed or model was selected using these test results.
+
+See the [decoder evaluation note](decoder-evaluation.md) and [Notebook 15](../notebooks/15_decoder_evaluation.ipynb) for completed results and reproduction. The commands below describe the original combined runner.
 
 ## Running the experiment
 

@@ -1,0 +1,161 @@
+{
+  "contract": "event-decoder-evaluation-v1",
+  "created_utc": "2026-10-26T00:58:33.918033+00:00",
+  "source_experiment": "artifacts/event-optuna-v1",
+  "amendment": "Evaluate the completed decoder study before the Seq2Event study finishes. Decoder configuration, validation selection, refit duration, three seeds and weights remain fixed. The source combined experiment remains unfinished.",
+  "source_plan_sha256": "aef009108fe87738a0724587bddc4865e7aaf8b37bac820c9504682b61a1c464",
+  "source_files": {
+    "plan.json": "aef009108fe87738a0724587bddc4865e7aaf8b37bac820c9504682b61a1c464",
+    "joint/baseline.json": "793a16a8f3d3880badec86977f063aee885e81dc3aebbd238cd21e60a9ccbc9c",
+    "joint/coverage.json": "68709e012766b65ec649053dc3c362d7096f8c854b42b653a5129d279aadb5ed",
+    "joint/search.json": "a963da0baa1cabe584fcadf05250a766a165b6a7901e6a2fcc46defa8c5319e7",
+    "joint/selection.json": "ec6189d9260ced3a2c9138d82db88180019dce47c600804ed2aaddbf4c04bbd4",
+    "joint/validation-transformer-seed-2026-metrics.json": "37731195b3d16ee3b43a58b4090351c330640b05477b7591effdc74b881b1d10",
+    "joint/validation-transformer-seed-2027-metrics.json": "e911dfaf824e90014a95bbc05d0b564d165b79c9f096e2be1b9b7bf8dc8168ce",
+    "joint/validation-transformer-seed-2028-metrics.json": "5d496af20f6f3080c3b5d269be2842cbe72500325e5b0a9d9f2d61ecfd6af705",
+    "joint/validation-transition-metrics.json": "c54638072f6f38c4c379e41942ebdc4987503807ca8c08fb64020c0aa6cc805e",
+    "joint/trials.csv": "053c313fd49b039c7a703751e4bdc9be09b3a37f90b90ab5a74cbb13291e85ea",
+    "joint/validation-transformer-seed-2026-action_given_action-confusion.csv": "7abf916ccf805682937fb0657d2e93226d8cef3d006f2f6901134bd0d4d82b07",
+    "joint/validation-transformer-seed-2026-joint-confusion.csv": "c652ce69dc1d58ebc0693ebe8a782fa0bb8a5a278da442cc6f2df3a2e3262593",
+    "joint/validation-transformer-seed-2026-per-class.csv": "5a3060cfb1fefc72e7f2c3f5412aa0aaea6d7980ddf53d566411e115714552ce",
+    "joint/validation-transformer-seed-2026-team_given_action-confusion.csv": "4552905aa7cbd8df3f1826f9259a2d448b1f684aaa9561d4bef8d2aee81158e8",
+    "joint/validation-transformer-seed-2027-action_given_action-confusion.csv": "a76ae48e553cfe14f9c8c0b6f960c126d71d3ff5f1d833c9af299ecb0eb9af17",
+    "joint/validation-transformer-seed-2027-joint-confusion.csv": "b4dcffba90f2a8d8fb76ad82bb78b7df0f75fb1589ba5270cb929ca35a0618e0",
+    "joint/validation-transformer-seed-2027-per-class.csv": "3db9346942456e04a8f24f8872c6cce8b6e8b232ad3e07b91386bb342f2c3f41",
+    "joint/validation-transformer-seed-2027-team_given_action-confusion.csv": "22ef68ef6086626af0271f044a352715df0b97763927eb2dccebee1e8ea36f8c",
+    "joint/validation-transformer-seed-2028-action_given_action-confusion.csv": "e06a15abb39462f78d91b69f93653089e98c72a6e65489fde04882cd4651f350",
+    "joint/validation-transformer-seed-2028-joint-confusion.csv": "11816e3dd8ab9182dc37d895f2bb98f7f4b9c2b94b734df455fd591181a1d271",
+    "joint/validation-transformer-seed-2028-per-class.csv": "9d9de127d5f6c1eac44f0c77e3ad2fc3d84afdecfb22688130dfa03135cf28f4",
+    "joint/validation-transformer-seed-2028-team_given_action-confusion.csv": "d3e1756f8ca3ead64e5d4ca41612f33456b6fdd10408893860071effb76b5707",
+    "joint/validation-transition-action_given_action-confusion.csv": "d5bc806814e433e49453cc0544bdf6425376acb09e5aeccbd846e01cfb0c4709",
+    "joint/validation-transition-joint-confusion.csv": "683bf3d8dd75b6d95ecac2655fd03b6654696a061200b25a144b4924c6ae4e98",
+    "joint/validation-transition-per-class.csv": "c6ed23c7740363b34413a6f45dc81c39fb83e6df234e7c1ac303c3d77548b962",
+    "joint/validation-transition-team_given_action-confusion.csv": "97ca43258407b4a6bc5deee5124d830a6f05e7fd64cd52487a8bd0fa40d37790",
+    "joint/study.sqlite3": "cc69d630c0570ea8381e5f5cf011703e64bcd9151d3ba0c533f91eed1d31864f",
+    "joint/sampler.pkl": "31f0a8c902b7c980601a402749be45aa062bc35ef0a67dea8f6563fc9212eac9",
+    "joint/model-seed-2026/model.json": "d0a999ac367983843a01fa48631eeef47bc2b80d37dc322fcfcdbf91b4b28920",
+    "joint/model-seed-2026/weights.pt": "ae082a1c4dcbe76e16d2672541b94c48224e112264e8ee352ff9914043020d8b",
+    "joint/model-seed-2027/model.json": "1403a2aa15ef4e09b65763bc487478ab5412c0baad48fd3588ccca73ae88493a",
+    "joint/model-seed-2027/weights.pt": "3d2ae56641d166718b7e3241c8c63414f8d111f9e08fe26cd60c0a2e2a9ef920",
+    "joint/model-seed-2028/model.json": "e1def44451090a3d5982a0d73cacd0077432ff81ec88ac011484ddd2deff0b86",
+    "joint/model-seed-2028/weights.pt": "01b895d8fd62fbb934ab40b0b2349989063580e2632b5541ae61dc1fc12260e9",
+    "joint/refit-seed-2026/result.json": "b2baf37df15953facc6dda9ad0206e5d2448397231d98f0c45f4f85dc44b263e",
+    "joint/refit-seed-2027/result.json": "2f749d3f39f566281708e77b930655d924a74eb4eea38db08965f0c07799c88a",
+    "joint/refit-seed-2028/result.json": "0bafa15aa9fbb37354750d5f3be3857177b5026362feedcb54d42e2a628efaff",
+    "team_stream/study.sqlite3": "8cc4e9b8e4231d3ad1a55826117c3bd64d1c80516e88137bea44398f4fd9e14f",
+    "team_stream/sampler.pkl": "0bab8c619c52ab5a6808b22531c0f9455a5d0298f6520fa7bac4c565d352402a",
+    "team_stream/trial-035/checkpoint.pt": "ce48d792823d56e85f8196504d57e85e480aad42b1ea3be0aba504389b476e53",
+    "team_stream/trial-035/history.json": "ae11198252af49496860cba6e4468bf926e226a551391a567153ef7e32385463"
+  },
+  "evaluator_sha256": "75c2b0b000a4b5d4cdd5cc98bdfe6b2a8a939be904edcfd9a53dcd839da7ec79",
+  "selected": {
+    "trial": 38,
+    "config": {
+      "mode": "joint",
+      "width": 64,
+      "embedding_dim": 8,
+      "club_embedding_dim": 4,
+      "heads": 4,
+      "layers": 4,
+      "ff_multiplier": 2,
+      "dense_dim": 128,
+      "dropout": 0.2612745676417207,
+      "learning_rate": 0.0018998040060514117,
+      "weight_decay": 0.0,
+      "window": 0
+    },
+    "validation_loss": 5.53111842685073,
+    "seeds": [
+      {
+        "best_epoch": 50,
+        "validation_loss": 5.53111842685073,
+        "epochs_completed": 60,
+        "stopping_reason": "early_stopping",
+        "seed": 2026,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      },
+      {
+        "best_epoch": 57,
+        "validation_loss": 5.536595575903277,
+        "epochs_completed": 60,
+        "stopping_reason": "epoch_limit",
+        "seed": 2027,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      },
+      {
+        "best_epoch": 56,
+        "validation_loss": 5.528116090479032,
+        "epochs_completed": 60,
+        "stopping_reason": "epoch_limit",
+        "seed": 2028,
+        "config": {
+          "mode": "joint",
+          "width": 64,
+          "embedding_dim": 8,
+          "club_embedding_dim": 4,
+          "heads": 4,
+          "layers": 4,
+          "ff_multiplier": 2,
+          "dense_dim": 128,
+          "dropout": 0.2612745676417207,
+          "learning_rate": 0.0018998040060514117,
+          "weight_decay": 0.0,
+          "window": 0
+        }
+      }
+    ],
+    "mean_validation_loss": 5.531943364411013,
+    "std_validation_loss": 0.004299512733877037,
+    "refit_epochs": 56
+  },
+  "models": {
+    "2026": {
+      "fingerprint": "6b72db2e82c0d5b425f4113d98585d34861d8efb2c11ad8d17daad202619f958",
+      "weights_sha256": "ae082a1c4dcbe76e16d2672541b94c48224e112264e8ee352ff9914043020d8b"
+    },
+    "2027": {
+      "fingerprint": "3e2bd5f674fa962b977d23125613f9fbd3f7a3bd28e52c290d65ced7d9cb7e97",
+      "weights_sha256": "3d2ae56641d166718b7e3241c8c63414f8d111f9e08fe26cd60c0a2e2a9ef920"
+    },
+    "2028": {
+      "fingerprint": "2543898219266d1968372e4b53c4f5872d61d771324ad1127acb25f251562ec6",
+      "weights_sha256": "01b895d8fd62fbb934ab40b0b2349989063580e2632b5541ae61dc1fc12260e9"
+    }
+  },
+  "seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "runtime": {
+    "torch": "2.11.0+cu128",
+    "optuna": "5.0.0",
+    "device": "cuda"
+  }
+}

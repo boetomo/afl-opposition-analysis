@@ -1,0 +1,199 @@
+{
+  "contract": "event-optuna-v1",
+  "protocol": {
+    "trials": 60,
+    "startup_trials": 15,
+    "max_epochs": 60,
+    "patience": 10,
+    "minimum_epochs": 15,
+    "pruning_startup_trials": 10,
+    "pruning_min_trials": 5,
+    "finalist_count": 3,
+    "seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "batches": {
+      "team_stream": 512,
+      "joint": 8
+    },
+    "action_loss_coefficient": 5.0,
+    "seq2event_window": 40,
+    "objective": "Fixed class-weighted CE * 5 + global coordinate RMSE within each formulation",
+    "refit_epochs": "Median best validation epoch across the selected configuration's seeds",
+    "context": "Fixed 40-token team streams; all observed tokens within each chronological quarter"
+  },
+  "search_space": {
+    "width": [
+      64,
+      96,
+      128,
+      192,
+      256
+    ],
+    "layers": [
+      1,
+      4
+    ],
+    "heads": [
+      2,
+      4,
+      8
+    ],
+    "embedding_dim": [
+      8,
+      16,
+      32
+    ],
+    "ff_multiplier": [
+      2,
+      4
+    ],
+    "dense_dim": [
+      32,
+      64,
+      128
+    ],
+    "dropout": [
+      0.0,
+      0.4
+    ],
+    "learning_rate": [
+      1e-05,
+      0.003
+    ],
+    "weight_decay": [
+      0.0,
+      1e-06,
+      0.01
+    ],
+    "club_embedding_dim": [
+      4,
+      8,
+      16
+    ]
+  },
+  "sources": {
+    "quarter_events.py": "e54a899acbc75f0e95d34ded2aaf736a497cdded8905cd6294cc6fd85f70493f",
+    "event_models.py": "1c820f13589821e32fadd8d719a73f0092577a3e3d9b6d6ddb0c827d58c54a76",
+    "event_comparison.py": "859f03d550d7229797850c066ce9e3065c364f939422eb2e6ef4257f45eef228",
+    "next_event_model.py": "849592716e6c36fc754050c3eb650d0f617fc5c1bbb96755295f27791e458cae",
+    "next_event_experiment.py": "5c14c53557679370a2275604249ac4851ad0fc3de49def1930938c6f3f015dc9",
+    "sequence.py": "9b2615823158fe8230b2693e7ba1cf63dfb25beec1289ede869aca097dbe2912",
+    "baseline.py": "8515e5d817396e0456c3bffcb9de2b8c65440329198537ba07aaf2b146dfc51f",
+    "preprocess.py": "5a1f1c5f0ed11aa36bb559581c509c2419dcc89eeed10904cb71f3ae27dc48ed",
+    "action_rules.py": "eea2ac2ae76793ce97fa68ad4e2a03be27c1620e87347eac44ac9587a5d47e6c",
+    "data.py": "ec5dd294eb603de5cf216d5fd6bf80a2cc91ad16398991f9e5023185a502698f",
+    "event_optuna.py": "75fb86e76a1d546dada671911bfc500f7ee11771be1913c99214c563f14e5b0c"
+  },
+  "provenance": {
+    "sources": {
+      "2023": {
+        "source_sha256": "b5502bdf097a5d635e40c13f41602d77bc0b387ba4ddf8c86eda942a15e9825d",
+        "source_filename": "chains_data_2023_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 2000,
+        "conflicting_shot_markers": 0,
+        "shot_conflict_possessions": 0,
+        "shot_conflict_locations": [],
+        "time_reversal_policy": "reject",
+        "quarantined_rows": 0,
+        "quarantined_quarters": [],
+        "processed_file_sha256": {
+          "events.parquet": "2fa7f9a714f58fb026743e0fe0a33a4d5bb19f86b3d345c1e798ee118780e380",
+          "possessions.parquet": "7da2aea48aea8cd50755d0669d00db997070f2f7855077fe71bf79db051d9e7d",
+          "annotations.parquet": "48c972136563688c7b08a17be17332cd0e98b87efc5bf6bd110fff6a166cbcdc",
+          "summary.json": "c0c3cd7b519b7b1bb9773fe39dc487224ab5d44fd33e0139b7b284116df5387c"
+        }
+      },
+      "2024": {
+        "source_sha256": "50bd3b31efe3407d94ba9b80f0d04dd69f7012f3099c3aba1fa41bf53dc3c74e",
+        "source_filename": "chains_data_2024_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 1760,
+        "conflicting_shot_markers": 1,
+        "shot_conflict_possessions": 1,
+        "shot_conflict_locations": [
+          {
+            "match_id": "CD_M20240142308",
+            "period": 1,
+            "chain_number": 60,
+            "display_order": 459
+          }
+        ],
+        "time_reversal_policy": "quarantine_quarter_v1",
+        "quarantined_rows": 589,
+        "quarantined_quarters": [
+          {
+            "match_id": "CD_M20240141606",
+            "period": 3
+          }
+        ],
+        "processed_file_sha256": {
+          "events.parquet": "04e7f5a5ad3a47e4fd22aef303335958759c760f6111e4420e9a73e3c7856e6d",
+          "possessions.parquet": "d38f41c1a77b6afd12a7ddc32147a225b969920e5ec68bf32b0dddcceeaf1a07",
+          "annotations.parquet": "6217ab3aa2230bfc7eddf7f5a67b1a8b407c7e937bc81f20b13bcc91c298804b",
+          "summary.json": "bf4792b189ee2f690e2a344e5b899875c7a497fa15db3a105cbcd71bd86e5953"
+        }
+      },
+      "2025": {
+        "source_sha256": "1e355570f558b28520699b8e621d0ea6b022f7697b14f37ac25fd624041bed0f",
+        "source_filename": "chains_data_2025_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 1843,
+        "conflicting_shot_markers": 1,
+        "shot_conflict_possessions": 2,
+        "shot_conflict_locations": [
+          {
+            "match_id": "CD_M20250140303",
+            "period": 4,
+            "chain_number": 205,
+            "display_order": 1824
+          }
+        ],
+        "time_reversal_policy": "quarantine_quarter_v1",
+        "quarantined_rows": 1027,
+        "quarantined_quarters": [
+          {
+            "match_id": "CD_M20250140608",
+            "period": 4
+          },
+          {
+            "match_id": "CD_M20250141305",
+            "period": 4
+          }
+        ],
+        "processed_file_sha256": {
+          "events.parquet": "44ddd544caa6c206427c48975f8f66bdaf3062a11686def40659cc22a58a85f0",
+          "possessions.parquet": "c2a86072789d40be37f1ecf7c77aa63a1fae16e5ad4141bb6fce349c4afd138b",
+          "annotations.parquet": "509cfee58d7d6bceb0e1bf2c4fecedd6a751cd524e6900474b0fd7f528d02c8e",
+          "summary.json": "06a0031e4058454e1d91e991902a69394122a7a4121afe62f11b9c4406b6e667"
+        }
+      }
+    }
+  },
+  "runtime": {
+    "torch": "2.11.0+cu128",
+    "optuna": "5.0.0",
+    "device": "cuda"
+  },
+  "smoke": false,
+  "split": {
+    "train": [
+      2023,
+      2024
+    ],
+    "validation": [
+      2025
+    ],
+    "refit": [
+      2023,
+      2024,
+      2025
+    ],
+    "test": [
+      2026
+    ]
+  }
+}

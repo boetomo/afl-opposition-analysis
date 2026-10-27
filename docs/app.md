@@ -4,7 +4,7 @@ A browser application for exploring archived AFL events, inspecting forecasts fr
 
 ## Open the hosted demo
 
-**[Launch AFL Opposition Analysis](https://afl-opposition-analysis.streamlit.app/)**. The public demo includes the all-club sample, event replays, frozen forecasts and downloadable HTML briefings. No installation or sign-in is required.
+**[Launch AFL Opposition Analysis](https://afl-opposition-analysis.streamlit.app/)**. The public app includes the full prepared 2026 archive: **218 matches, 869 available quarters and all 18 clubs**, with event replays, frozen forecasts and downloadable HTML briefings. No installation or sign-in is required.
 
 ## Start locally
 
@@ -18,13 +18,15 @@ py -3.14 -m venv .venv
 
 Open the local URL printed by Streamlit, normally `http://localhost:8501`. Stop the server with Ctrl+C. The app extra contains Streamlit and Plotly; PyTorch is not required to browse prepared data or download a report.
 
-The committed **sample archive covers all 18 clubs**. It contains the earliest available quarter in each club's earliest 2026 match, chosen independently of model performance. These are partial matches, not a representative sample of recent form. The application labels this coverage explicitly.
+The default is the committed [2026 archive](../reports/examples/opposition-2026/): 218 matches from 5 March to 26 September 2026, with 869 available quarters. All of a team's available matches are listed initially. Three quarters are excluded because their recorded event timestamps run backwards. The quarter selector, coverage table and reports reflect those exclusions.
 
-If `artifacts/opposition-app-v1/` is available, the full local archive is the default. The prepared 2026 archive contains 218 matches and 869 non-quarantined quarters. The match table shows available quarters rather than assuming every match has four. Use the Data selector to switch between the local archive and sample.
+The **Data** selector also offers a smaller sample covering all 18 clubs. It contains the earliest available quarter in each club's earliest match, selected independently of model performance. The sample consists of partial matches and is labelled accordingly. Switching archives resets the date filter to include the newly selected archive.
+
+The published archive takes precedence over `artifacts/opposition-app-v1/`. That local path remains a fallback if the published bundle is absent. Set `AFL_APP_BUNDLE` to use a different prepared archive.
 
 ## Workflow
 
-1. Select the team to analyse, a briefing date and the number of recent matches. Only games with a recorded date **strictly before** that date are included.
+1. Select the team to analyse and a briefing date. **All available matches** is the default match range. Choose **Recent matches** to limit both the replay list and briefing to a specified number of games. Only games with a recorded date **strictly before** the briefing date are included.
 2. Choose a match and quarter. Step through the events or press Play. The field diagram displays the last twelve observations. The decoder forecast uses the complete observed quarter, and the selected team always attacks right.
 3. Inspect next team/action probabilities and the predicted location. The actual next event is shown by default. Uncheck **Reveal the actual next event** to hide it. Selecting a new replay restores the checked default. Unknown passages and archive quality flags are visible; unreliable current observations have their forecast withheld.
 4. Open Opposition briefing to compare observed next-event frequencies with the model's average estimates in the same situations.
@@ -58,7 +60,7 @@ These summaries describe the situations encountered in the selected games. They 
 
 [Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud) provides free hosting from a GitHub repository. Visitors use the app through a public URL without downloading the repository or installing Python. The app runs on the host, so the developer's computer can be switched off.
 
-1. Push the app, its dependency files and the committed sample bundle to GitHub.
+1. Push the app, its dependency files and the committed `reports/examples/opposition-2026/` bundle to GitHub.
 2. Sign in at [share.streamlit.io](https://share.streamlit.io/) and connect the GitHub account containing the repository.
 3. Choose **Create app**, then select the repository, branch and entrypoint. For this repository, use:
 
@@ -74,16 +76,16 @@ These summaries describe the situations encountered in the selected games. They 
 
 The root `requirements.txt` delegates to `requirements-app.txt`, which installs the app extra from `pyproject.toml`. Select Python 3.14 explicitly because this project requires it. No secrets, GPU, model weights or training are needed for the bundled demo. Linux installs use PyArrow 24.0.0 to match Community Cloud's compatibility workaround for PyArrow 26. Other platforms retain the existing 26.0.0 pin. See the official [deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [dependency instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies).
 
-A fresh deployment serves the committed sample covering all 18 clubs. It contains partial matches. The larger local archive under `artifacts/` is not committed and will not appear automatically on the host.
+A fresh deployment serves the full prepared 2026 archive from the repository. Its event file uses lossless Zstandard compression, and loading verifies file checksums. Observations and forecasts are unchanged from the prepared local archive. The app shares loaded bundles between sessions and bounds the report cache to limit memory use. The smaller sample remains optional; ignored training artifacts and model weights are not deployed.
 
 Community Cloud [puts apps to sleep after 12 hours without traffic](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app#app-hibernation). A visitor can wake the app from its sleeping page.
 
 ## Other hosts and tests
 
-`app.py` is the entrypoint. Install `requirements-app.txt` on a Python 3.14 host and run Streamlit with the host's bind address and port. To serve a full archive, copy a prepared bundle to the host and set `AFL_APP_BUNDLE` to its location. Live match ingestion remains a separate feature.
+`app.py` is the entrypoint. Install `requirements-app.txt` on a Python 3.14 host and run Streamlit with the host's bind address and port. The included 2026 archive is selected automatically. To serve a different archive, copy a prepared bundle to the host and set `AFL_APP_BUNDLE` to its location. Live match ingestion remains a separate feature.
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -p test_opposition_app.py -v
 ```
 
-Checks cover causal prefix equivalence, team/date filtering, home/away orientation, quality exclusions, optional future reveal, report coverage and HTML escaping, file integrity and the app's team/replay/download workflow.
+Checks cover published archive coverage, all-match and recent-match selection, quarter availability, causal prefix equivalence, team/date filtering, home/away orientation, quality exclusions, optional future reveal, report coverage and HTML escaping, file integrity and the app's team/replay/download workflow.

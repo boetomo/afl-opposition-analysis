@@ -21,6 +21,7 @@ from test_event_comparison import observations, config
 
 ROOT = Path(__file__).resolve().parents[1]
 DEMO = ROOT / 'reports/examples/opposition-demo'
+ARCHIVE = ROOT / 'reports/examples/opposition-2026'
 
 
 class OppositionModelTests(unittest.TestCase):
@@ -156,6 +157,88 @@ class OppositionAppTests(unittest.TestCase):
             app.date_input(key='cutoff').set_value(date(2026,1,1)).run()
             self.assertEqual(len(app.exception), 0)
             self.assertTrue(any('No recorded matches' in i.value for i in app.info))
+
+
+class PublishedArchiveTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.bundle = load_bundle(ARCHIVE)
+        cls.cutoff = max(cls.bundle.matches.date) + timedelta(days=1)
+
+    def test_full_coverage_and_quarantined_quarters(self):
+        bundle = self.bundle
+        self.assertEqual(len(bundle.matches), 218)
+        self.assertEqual(len(bundle.events), 357223)
+        self.assertEqual(bundle.events.quarter_id.nunique(), 869)
+        self.assertEqual(len(clubs(bundle)), 18)
+        self.assertEqual(min(bundle.matches.date), date(2026, 3, 5))
+        self.assertEqual(max(bundle.matches.date), date(2026, 9, 26))
+        covered = set()
+        for club in clubs(bundle):
+            matches = select_matches(bundle, club, self.cutoff, count=None)
+            expected = bundle.matches.loc[bundle.matches.home_team_id.eq(club) | bundle.matches.away_team_id.eq(club)]
+            self.assertEqual(set(matches.match_id), set(expected.match_id))
+            self.assertGreater(len(matches), 5)
+            self.assertEqual(len(select_matches(bundle, club, self.cutoff, 5)), 5)
+            covered.update(matches.match_id)
+        self.assertEqual(covered, set(bundle.matches.match_id))
+        quarantined = bundle.manifest['data_provenance']['sources']['2026']['quarantined_quarters']
+        excluded = {(q['match_id'], q['period']) for q in quarantined}
+        for match in bundle.matches.itertuples():
+            periods = set(bundle.events.loc[bundle.events.match_id.eq(match.match_id), 'period'])
+            self.assertEqual(periods, {q for q in range(1, 5) if (match.match_id, q) not in excluded})
+            self.assertEqual(len(periods), match.quarters_available)
+
+    def test_default_archive_does_not_require_local_artifacts(self):
+        from afl_opposition.opposition_app import available_bundles
+        with patch.dict('os.environ', {'AFL_APP_BUNDLE':''}):
+            self.assertEqual(available_bundles(ROOT)['2026 archive'], ARCHIVE)
+            with tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                published = root / 'reports/examples/opposition-2026'
+                published.mkdir(parents=True)
+                (published / 'manifest.json').write_text('{}', encoding='utf-8')
+                self.assertEqual(available_bundles(root), {'2026 archive': published})
+
+    def test_full_app_match_ranges_quarters_and_archive_switch(self):
+        from streamlit.testing.v1 import AppTest
+        with patch.dict('os.environ', {'AFL_APP_BUNDLE':''}):
+            app = AppTest.from_file(str(ROOT / 'app.py'), default_timeout=60).run()
+            self.assertEqual(len(app.exception), 0)
+            self.assertEqual(app.selectbox(key='source').value, '2026 archive')
+            self.assertEqual(app.selectbox(key='scope').value, 'All available matches')
+            club = app.selectbox(key='club').value
+            matches = select_matches(self.bundle, club, self.cutoff, count=None)
+            self.assertEqual(len(app.selectbox(key='match').options), len(matches))
+            app.selectbox(key='match').set_value(matches.iloc[-1].match_id).run()
+            self.assertEqual(app.selectbox(key='quarter').options, ['1', '2', '3', '4'])
+            app.selectbox(key='quarter').set_value(4).run()
+            self.assertEqual(len(app.exception), 0)
+            self.assertTrue(any('**Q4' in m.value for m in app.markdown))
+            app.button(key='generate').click().run()
+            self.assertEqual(len(app.download_button), 1)
+            html = app.session_state['report_html']
+            self.assertIn('2026 historical archive', html)
+            self.assertNotIn('Demonstration sample', html)
+            for day in matches.date:
+                self.assertIn(str(day), html)
+            app.selectbox(key='scope').set_value('Recent matches').run()
+            self.assertEqual(len(app.selectbox(key='match').options), 5)
+            self.assertEqual(len(app.download_button), 0)
+            app.number_input(key='count').set_value(1).run()
+            self.assertEqual(len(app.selectbox(key='match').options), 1)
+            app.selectbox(key='scope').set_value('All available matches').run()
+            damaged = self.bundle.matches.loc[self.bundle.matches.match_id.eq('CD_M20260140001')].iloc[0]
+            app.selectbox(key='club').set_value(damaged.home_team_id).run()
+            app.selectbox(key='match').set_value(damaged.match_id).run()
+            self.assertEqual(app.selectbox(key='quarter').options, ['2', '3', '4'])
+            self.assertTrue(any('Q1 is unavailable' in i.value for i in app.info))
+            app.selectbox(key='source').set_value('Sample archive · all clubs').run()
+            self.assertLess(app.date_input(key='cutoff').value, self.cutoff)
+            app.selectbox(key='source').set_value('2026 archive').run()
+            self.assertEqual(app.date_input(key='cutoff').value, self.cutoff)
+            self.assertGreater(len(app.selectbox(key='match').options), 5)
+            self.assertEqual(len(app.exception), 0)
 
 
 if __name__ == '__main__':

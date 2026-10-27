@@ -4,11 +4,11 @@
 
 Explore how AFL teams move the ball, compare model forecasts with what happened next, and download an opposition briefing. This independent project combines match-event replays, observed team tendencies and machine learning in one browser app.
 
-The public demo covers **all 18 clubs**, using sample quarters from 2026 matches.
+The app includes the full prepared **2026 archive: 218 matches, 869 available quarters and all 18 clubs**.
 
 ## Try the app
 
-1. **Choose a team and match.** Use the sidebar to select the team, then choose a match and quarter.
+1. **Choose a team and match.** All available matches are shown by default. Use the sidebar to select a team or limit the review to recent games, then choose a match and quarter.
 2. **Inspect the play.** Step through events or press Play. Compare the predicted next team, action and location with the recorded outcome. **Reveal the actual next event** is checked by default and can be turned off.
 3. **Download a briefing.** Open **Opposition briefing**, review the tendency table and generate an HTML report that can be opened offline or printed to PDF.
 
@@ -42,7 +42,7 @@ Models were developed using 2023–2025 data. The 2026 results are a previously 
 
 ## Scope
 
-This is a **historical review demo**. The public sample contains partial matches, and the replay plots recorded events rather than video or continuous player tracking. The project has not established that its forecasts improve coaching decisions. Separate shot and goal prediction experiments are available in the notebooks and are not yet part of the app.
+This is a **historical review demo**. Three quarters are excluded because their event timestamps run backwards; the app shows the available coverage. Replays plot recorded events rather than video or continuous player tracking. The project has not established that its forecasts improve coaching decisions. Separate shot and goal prediction experiments are available in the notebooks and are not yet part of the app.
 
 ## Explore the work
 

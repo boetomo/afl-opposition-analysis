@@ -66,11 +66,12 @@ def clubs(bundle):
 
 
 def select_matches(bundle, club, cutoff, count=5):
-    """Only dates strictly before the briefing date; same-day games are excluded."""
-    if club not in clubs(bundle) or not 1 <= count <= 30:
-        raise ValueError('Choose a known team and between one and 30 matches.')
+    """Dates strictly before cutoff; count=None includes every matching game."""
+    if club not in clubs(bundle) or (count is not None and not 1 <= count <= 30):
+        raise ValueError('Choose a known team and between one and 30 matches, or all matches.')
     selected = bundle.matches.loc[(bundle.matches.home_team_id.eq(club) | bundle.matches.away_team_id.eq(club)) & bundle.matches.date.lt(cutoff)]
-    return selected.sort_values(['date', 'match_id'], ascending=False).head(count)
+    selected = selected.sort_values(['date', 'match_id'], ascending=False)
+    return selected if count is None else selected.head(count)
 
 
 def side_for(match, club):
@@ -195,7 +196,7 @@ def report_html(bundle, matches, club, cutoff):
     if matches.empty:
         raise ValueError('Select at least one match before exporting a report.')
     # The caller cannot bypass the date/team filter or supply unrelated match rows.
-    allowed = select_matches(bundle, club, cutoff, 30)
+    allowed = select_matches(bundle, club, cutoff, count=None)
     if not set(matches.match_id).issubset(set(allowed.match_id)):
         raise ValueError('Report includes a match outside the team/date selection.')
     name = clubs(bundle)[club]

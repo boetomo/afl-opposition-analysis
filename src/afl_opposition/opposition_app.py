@@ -13,17 +13,35 @@ from afl_opposition.opposition import (
 )
 
 
-@st.cache_resource(show_spinner='Loading match archive…')
+@st.cache_resource(show_spinner='Loading match archive…', max_entries=2)
 def cached_bundle(folder, stamp):
     return load_bundle(folder)
 
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, max_entries=8)
 def briefing(folder, stamp, club, cutoff, ids):
     bundle = cached_bundle(folder, stamp)
-    matches = select_matches(bundle, club, cutoff, 30)
+    matches = select_matches(bundle, club, cutoff, count=None)
     matches = matches.loc[matches.match_id.isin(ids)]
     return report_html(bundle, matches, club, cutoff)
+
+
+def available_bundles(root):
+    """Prefer the published archive so fresh checkouts match the hosted app."""
+    root = Path(root)
+    configured = os.environ.get('AFL_APP_BUNDLE')
+    if configured:
+        return {'Configured archive': Path(configured)}
+    options = {}
+    for relative in ('reports/examples/opposition-2026', 'artifacts/opposition-app-v1'):
+        folder = root / relative
+        if (folder / 'manifest.json').is_file():
+            options['2026 archive'] = folder
+            break
+    sample = root / 'reports/examples/opposition-demo'
+    if (sample / 'manifest.json').is_file():
+        options['Sample archive · all clubs'] = sample
+    return options
 
 
 def main(root):
@@ -35,15 +53,7 @@ def main(root):
     [data-testid="stMetric"] {background:white;border:1px solid #e1e9e7;border-radius:10px;padding:12px 18px}
     .eyebrow {font-size:12px;font-weight:700;letter-spacing:2px;color:#0c8378;text-transform:uppercase}
     </style>''', unsafe_allow_html=True)
-    options = {}
-    configured = os.environ.get('AFL_APP_BUNDLE')
-    if configured:
-        options['Configured archive'] = Path(configured)
-    else:
-        for title, relative in [('2026 archive', 'artifacts/opposition-app-v1'), ('Sample archive · all clubs', 'reports/examples/opposition-demo')]:
-            folder = root / relative
-            if (folder / 'manifest.json').is_file():
-                options[title] = folder
+    options = available_bundles(root)
     st.sidebar.title('Match selection')
     if not options:
         st.title('AFL Opposition Analysis')
@@ -62,9 +72,16 @@ def main(root):
     club = st.sidebar.selectbox('Team to analyse', list(names), format_func=names.get, key='club',
         help='Filters the team’s matches and sets the pitch orientation. Viewing the same match event from either team gives the same forecast.')
     end = max(bundle.matches.date) + timedelta(days=1)
+    if st.session_state.get('archive_folder') != str(folder):
+        st.session_state.pop('cutoff', None)
+        st.session_state.archive_folder = str(folder)
     cutoff = st.sidebar.date_input('Matches before', value=end, key='cutoff', help='Only matches strictly before this date are included. This is historical archive review.')
-    count = st.sidebar.number_input('Recent matches', min_value=1, max_value=30, value=5, step=1, key='count')
-    matches = select_matches(bundle, club, cutoff, int(count))
+    scope = st.sidebar.selectbox('Match range', ['All available matches', 'Recent matches'], key='scope',
+        help='Applies to both the replay match list and the opposition briefing, before the selected date.')
+    count = None
+    if scope == 'Recent matches':
+        count = int(st.sidebar.number_input('Recent matches', min_value=1, max_value=30, value=5, step=1, key='count'))
+    matches = select_matches(bundle, club, cutoff, count)
     st.sidebar.caption('The saved model was trained on 2023–2025. Available replay matches are from 2026. No model trains while this app is open.')
     st.markdown('<div class="eyebrow">AFL Opposition Analysis</div>', unsafe_allow_html=True)
     st.title(f'{names[club]} · opposition review')
@@ -72,6 +89,7 @@ def main(root):
     if bundle.manifest['coverage'] == 'sample':
         st.info(bundle.manifest['coverage_note'])
     else:
+        st.caption(f'{len(bundle.matches):,} matches · {int(bundle.matches.quarters_available.sum()):,} available quarters · {len(names)} clubs · {min(bundle.matches.date):%d %b}–{max(bundle.matches.date):%d %b %Y}')
         st.caption('Historical archive · frozen decoder · predictions based only on the observed quarter history')
     if matches.empty:
         st.info('No recorded matches for this team before that date. Choose a later date or a different archive.')
@@ -89,7 +107,11 @@ def main(root):
             format_func=lambda mid:f'{by_id.loc[mid,"date"]} · {by_id.loc[mid,"home_name"]} v {by_id.loc[mid,"away_name"]} · R{by_id.loc[mid,"round_number"]}')
         match = by_id.loc[match_id]
         match_events = bundle.events.loc[bundle.events.match_id.eq(match_id)]
-        period = col2.selectbox('Quarter', sorted(match_events.period.unique().tolist()), key='quarter')
+        available_quarters = sorted(match_events.period.unique().tolist())
+        period = col2.selectbox('Quarter', available_quarters, key='quarter')
+        if bundle.manifest['coverage'] == 'archive' and len(available_quarters) < 4:
+            missing = ', '.join(f'Q{q}' for q in range(1, 5) if q not in available_quarters)
+            st.info(f'{missing} is unavailable in this archive. Quarters with invalid event ordering are excluded; the replay and report use the available quarters only.')
         quarter = match_events.loc[match_events.period.eq(period)].reset_index(drop=True)
         context = (source, club, str(cutoff), match_id, int(period))
         if st.session_state.get('replay_context') != context:

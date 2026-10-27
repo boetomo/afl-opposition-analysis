@@ -4,11 +4,13 @@ Explore AFL match events, inspect next-event forecasts and download an oppositio
 
 A shared decoder predicts which team acts next, what it does and where the event occurs, using both teams and the observed quarter history. Separate research experiments estimate whether a possession will lead to a shot or goal.
 
-![AFL replay showing recorded ball movement, the predicted next location and next-event probabilities.](docs/images/opposition-app.jpg)
+![Successful next-event forecast: Adelaide receive has the highest model estimate at 67.5%, matching the revealed event. The predicted and actual location markers nearly overlap.](docs/images/opposition-app.jpg)
 
-*Included sample: Collingwood v Adelaide Crows, 14 March 2026, quarter 1, event 50. The actual next event is hidden. The screenshot illustrates the interface; it is not an evaluation result.*
+*Example correct forecast: Collingwood v Adelaide Crows, 14 March 2026, quarter 1, after event 50 (03:30). The model assigns 67.5% to an Adelaide receive, which is the recorded next event at 03:31. The purple prediction marker is close to the actual-location diamond. This illustrates one successful forecast; overall performance is summarised in [Results at a glance](#results-at-a-glance).*
 
 ## Try the app
+
+The app can be hosted on Streamlit Community Cloud so visitors need only a browser. See [online deployment instructions](docs/app.md#deploy-on-streamlit-community-cloud).
 
 Download or clone the repository. With Python 3.14 or later installed, run these commands from the repository root in PowerShell. Skip the first command if the project virtual environment already exists.
 

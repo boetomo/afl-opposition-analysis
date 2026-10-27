@@ -49,9 +49,33 @@ The passage list takes one earliest eligible transition per selected match befor
 
 These summaries describe the situations encountered in the selected games. They do not control for opposition strength, score or changing match circumstances, establish a team's causal style, or prescribe defensive tactics. The archive includes retrospective quality decisions and may have been revised after the match. The 2026 benchmark has already been observed. This version is a historical review tool, not a live match feed.
 
-## Deployment and tests
+## Deploy on Streamlit Community Cloud
 
-`app.py` is the app entrypoint. `requirements-app.txt` installs only the app environment. A Python 3.14 host can serve the committed sample without raw archives or weights. Copy a prepared full bundle to the host and set `AFL_APP_BUNDLE` to serve that archive. Run the same Streamlit command with a host-appropriate bind address and port. Public hosting, authentication and ingestion of live match data are separate deployment steps.
+[Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud) provides free hosting from a GitHub repository. Visitors use the app through a public URL without downloading the repository or installing Python. The app runs on the host, so the developer's computer can be switched off.
+
+1. Push the app, its dependency files and the committed sample bundle to GitHub.
+2. Sign in at [share.streamlit.io](https://share.streamlit.io/) and connect the GitHub account containing the repository.
+3. Choose **Create app**, then select the repository, branch and entrypoint. For this repository, use:
+
+   | Setting | Value |
+   | --- | --- |
+   | Repository | `boetomo/afl-opposition-analysis` |
+   | Branch | `main` |
+   | Main file path | `app.py` |
+   | Advanced settings: Python version | **3.14** |
+
+4. Deploy the app and set its sharing to **public** in the app settings. Open the resulting `streamlit.app` URL in a signed-out browser to verify access.
+5. Check team selection, replay controls, actual-event reveal and the HTML report download. Add the verified public URL to the repository's About field and README.
+
+The root `requirements.txt` delegates to `requirements-app.txt`, which installs the app extra from `pyproject.toml`. Select Python 3.14 explicitly because this project requires it. No secrets, GPU, model weights or training are needed for the bundled demo. See the official [deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [dependency instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies).
+
+A fresh deployment serves the committed sample covering all 18 clubs. It contains partial matches. The larger local archive under `artifacts/` is not committed and will not appear automatically on the host.
+
+Community Cloud [puts apps to sleep after 12 hours without traffic](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app#app-hibernation). A visitor can wake the app from its sleeping page.
+
+## Other hosts and tests
+
+`app.py` is the entrypoint. Install `requirements-app.txt` on a Python 3.14 host and run Streamlit with the host's bind address and port. To serve a full archive, copy a prepared bundle to the host and set `AFL_APP_BUNDLE` to its location. Live match ingestion remains a separate feature.
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -p test_opposition_app.py -v

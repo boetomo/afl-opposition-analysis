@@ -1,0 +1,2 @@
+# App-only environment for Streamlit Community Cloud.
+-r requirements-app.txt

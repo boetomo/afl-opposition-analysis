@@ -62,4 +62,4 @@ There are 103,989 adjacent rows sharing a timestamp within a match-quarter, and 
 
 Possession construction requires rules for controlled possession, overlapping annotations and coordinate orientation, supported by audits of actual passages. Unresolved cases require separate review. The proposed target is whether the same team takes a subsequent shot before its possession ends, given an observed pre-shot prefix. This differs from the current row's `shot_at_goal` flag.
 
-Reproduce this inspection with the commands in the [README](../README.md#load-and-inspect-data). The downloaded file remains unchanged.
+Reproduce this inspection with the commands in the [technical guide](technical-guide.md#load-and-inspect-data). The downloaded file remains unchanged.

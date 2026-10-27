@@ -93,7 +93,7 @@ def main(root):
         quarter = match_events.loc[match_events.period.eq(period)].reset_index(drop=True)
         context = (source, club, str(cutoff), match_id, int(period))
         if st.session_state.get('replay_context') != context:
-            st.session_state.update(replay_context=context, event_number=1, playing=False, reveal=False)
+            st.session_state.update(replay_context=context, event_number=1, playing=False, reveal=True)
         if st.session_state.get('playing') and st.session_state.get('event_number', 1) >= len(quarter):
             st.session_state.playing = False
 

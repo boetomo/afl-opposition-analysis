@@ -8,9 +8,10 @@ A browser application for exploring archived AFL events, inspecting forecasts fr
 
 ## Start locally
 
-From the repository root, using the existing virtual environment:
+With Python 3.14 installed, run these commands from the repository root. Skip the first command if the virtual environment already exists:
 
 ```powershell
+py -3.14 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[app]"
 .\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
 ```
@@ -25,7 +26,7 @@ If `artifacts/opposition-app-v1/` is available, the full local archive is the de
 
 1. Select the team to analyse, a briefing date and the number of recent matches. Only games with a recorded date **strictly before** that date are included.
 2. Choose a match and quarter. Step through the events or press Play. The field diagram displays the last twelve observations. The decoder forecast uses the complete observed quarter, and the selected team always attacks right.
-3. Inspect next team/action probabilities and the predicted location. Reveal the actual next event when needed. Unknown passages and archive quality flags are visible; unreliable current observations have their forecast withheld.
+3. Inspect next team/action probabilities and the predicted location. The actual next event is shown by default. Uncheck **Reveal the actual next event** to hide it. Selecting a new replay restores the checked default. Unknown passages and archive quality flags are visible; unreliable current observations have their forecast withheld.
 4. Open Opposition briefing to compare observed next-event frequencies with the model's average estimates in the same situations.
 5. Generate and download the HTML briefing. It contains coverage, tendency tables and up to six example passages with forecasts and actual outcomes. The HTML includes its plotting library and opens offline. A browser's Print to PDF command provides a static copy.
 

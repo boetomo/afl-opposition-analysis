@@ -30,13 +30,13 @@ The included sample covers all 18 clubs and runs **without model weights or trai
 
 Models fit on 2023–2024, tune on 2025 and refit on 2023–2025 before evaluation on 2026. The 2026 season is an **already-observed project benchmark**. These comparisons do not establish live-match reliability or statistically significant superiority.
 
-**Next team, action and location.** The tuned causal decoder improves on the transition baseline and earlier decoder on the same 333,883 next-event targets. The prediction classes include a neutral boundary; location RMSE uses 304,298 valid coordinate targets and dimensionless venue-normalised coordinates.
+**Next team, action and location.** The tuned decoder-only Transformer improves on the transition baseline and earlier decoder on the same 333,883 next-event targets. The prediction classes include a neutral boundary; location RMSE uses 304,298 valid coordinate targets and dimensionless venue-normalised coordinates.
 
 | Model | Next team/action accuracy ↑ | Log loss ↓ | Macro F1 ↑ | Location RMSE ↓ |
 | --- | ---: | ---: | ---: | ---: |
 | Transition baseline | 57.86% | 1.2346 | 0.2366 | 0.1992 |
 | Earlier decoder, one seed | 63.08% | 1.0795 | 0.3159 | 0.1351 |
-| Tuned decoder, three-seed mean | **63.61%** | **1.0577** | **0.3338** | **0.1249** |
+| Tuned decoder-only Transformer, three-seed mean | **63.61%** | **1.0577** | **0.3338** | **0.1249** |
 
 The app uses cached forecasts from the predeclared first refit, seed 2026. The final row above averages three independent refits. Rare-action recall remains weak. [Results and confusion matrices in Notebook 15](notebooks/15_decoder_evaluation.ipynb) · [Evaluation details](docs/decoder-evaluation.md).
 
@@ -53,7 +53,7 @@ The app provides historical match review and downloadable opposition reports. Li
 
 ## Start here
 
-- **[Tuned decoder results (Notebook 15)](notebooks/15_decoder_evaluation.ipynb):** review the completed 60-trial search, three-seed evaluation, confusion matrices and comparison with the earlier decoder.
+- **[Tuned decoder-only Transformer results (Notebook 15)](notebooks/15_decoder_evaluation.ipynb):** review the completed 60-trial search, three-seed evaluation, confusion matrices and comparison with the earlier decoder.
 - **[Team-aware next-event prediction (Notebook 13)](notebooks/13_event_formulations.ipynb):** inspect the two model formulations, baseline comparisons, confusion matrices and a concrete forecast from an observed quarter.
 - **[Within-possession next-action prediction (Notebook 12)](notebooks/12_next_event_prediction.ipynb):** inspect how observed events become inputs and targets, then review the earlier model and its example forecast.
 - **[Shot and goal modelling (Notebook 11)](notebooks/11_transformer_retraining.ipynb):** review outcome prediction, validation tuning, calibration and comparisons with logistic regression, XGBoost and LSTMs.
@@ -120,9 +120,9 @@ The revised Transformer leads the single-model comparison on BCE, Brier score an
 
 **Interpretation:** 2026 is an already-observed shared benchmark. Search budgets differ between model families, and these point estimates do not establish statistical superiority or live-match reliability. [Full results, confusion matrices and limitations](docs/transformer-retraining.md).
 
-## Optuna-tuned decoder results
+## Tuned decoder-only Transformer results
 
-The [headline results above](#results-at-a-glance) come from a completed 60-trial search, three-seed finalist selection and three fresh 56-epoch refits. Selection used 2025 only. All three refits were frozen before evaluation on the shared 2026 benchmark.
+The [headline results above](#results-at-a-glance) come from a completed 60-trial hyperparameter search using Optuna, three-seed finalist selection and three fresh 56-epoch refits. Selection used 2025 only. All three refits were frozen before evaluation on the shared 2026 benchmark.
 
 Relative to the earlier decoder, accuracy improves by 0.53 percentage points and location RMSE falls by 7.6%. Across seeds, accuracy SD is 0.074 percentage points and location RMSE SD is 0.00161.
 

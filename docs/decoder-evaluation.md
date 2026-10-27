@@ -1,4 +1,4 @@
-# Decoder evaluation after Optuna tuning
+# Tuned decoder-only Transformer evaluation
 
 The completed chronological decoder study predicts the **next recorded team and action, or a neutral boundary, plus the next action's location**. It uses all observed events within the current quarter, causal attention and team/club context. The shared model applies across clubs. This is next-event prediction, not a shot/goal classifier or a validated tactical recommendation.
 
@@ -10,7 +10,7 @@ The original [combined protocol](event-optuna.md) waited for both studies before
 
 ## Selection and refitting
 
-Candidates trained on **2023–2024** and were selected on **2025**. Of the 60 trials, 36 completed and 24 were pruned. The three strongest completed configurations were each fitted from scratch with seeds 2026, 2027 and 2028. Mean best validation objective selected trial 38 (zero-based). Its best epochs were 50, 57 and 56, giving a fixed **56-epoch refit** on **2023–2025** for each of the three seeds.
+Optuna was used for hyperparameter search. Candidates trained on **2023–2024** and were selected on **2025**. Of the 60 trials, 36 completed and 24 were pruned. The three strongest completed configurations were each fitted from scratch with seeds 2026, 2027 and 2028. Mean best validation objective selected trial 38 (zero-based). Its best epochs were 50, 57 and 56, giving a fixed **56-epoch refit** on **2023–2025** for each of the three seeds.
 
 | Selected parameter | Value |
 | --- | ---: |
@@ -34,8 +34,8 @@ All rows below use the same **333,883 eligible next-event targets**, including 2
 | --- | ---: | ---: | ---: | ---: |
 | Transition baseline | 57.856% | 1.23457 | 0.23660 | 0.19921 |
 | Earlier decoder, one seed | 63.083% | 1.07954 | 0.31586 | 0.13514 |
-| Optuna decoder, mean of three seeds | **63.614%** | **1.05767** | **0.33378** | **0.12488** |
-| Optuna decoder, sample SD | 0.074 percentage points | 0.00179 | 0.00616 | 0.00161 |
+| Tuned decoder-only Transformer, mean of three seeds | **63.614%** | **1.05767** | **0.33378** | **0.12488** |
+| Tuned decoder-only Transformer, sample SD | 0.074 percentage points | 0.00179 | 0.00616 | 0.00161 |
 
 Relative to the earlier decoder, mean accuracy rises by **0.53 percentage points**, log loss falls by **2.0%**, and location RMSE falls by **7.6%**. These are descriptive improvements. The earlier experiment used a smaller search and one seed, so the comparison does not isolate one architectural or training change.
 

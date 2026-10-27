@@ -1,4 +1,4 @@
-"""Evaluate an already-selected Optuna decoder without finishing the team-stream study.
+"""Evaluate an already-selected tuned decoder-only Transformer without finishing the team-stream study.
 
 This is a separate evaluation-order amendment. It never fits models, changes the
 source study, or marks the combined experiment complete.
@@ -205,7 +205,7 @@ def export_report(experiment, output):
         if path.is_file() and path.suffix in {'.json', '.csv'}:
             shutil.copyfile(path, output / path.name)
     (output / 'README.md').write_text(
-        '# Optuna decoder evaluation\n\n'
+        '# Tuned decoder-only Transformer evaluation\n\n'
         'Completed evaluation of all three validation-selected decoder refits and the frozen transition baseline. '
         'Seq2Event remains a separate unfinished study. The evaluation-order amendment and pre-test weight '
         'fingerprints are recorded in `frozen_decoder.json`. No model weights or raw match archives are included.\n\n'

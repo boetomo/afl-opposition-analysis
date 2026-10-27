@@ -189,4 +189,4 @@ def main(root):
             filename = re.sub(r'[^a-z0-9]+','-', names[club].lower()).strip('-') + f'-opposition-{cutoff}.html'
             st.download_button('Download opposition report', st.session_state.report_html, file_name=filename,
                 mime='text/html', key='download', on_click='ignore', type='primary')
-    st.caption('Model: Optuna decoder · predeclared seed 2026 · trained on 2023–2025 · source: torpdata. This app performs no training.')
+    st.caption('Model: Tuned decoder-only Transformer · predeclared seed 2026 · trained on 2023–2025 · source: torpdata. This app performs no training.')

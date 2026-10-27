@@ -1,4 +1,4 @@
-# Optuna decoder evaluation
+# Tuned decoder-only Transformer evaluation
 
 Completed evaluation of all three validation-selected decoder refits and the frozen transition baseline. Seq2Event remains a separate unfinished study. The evaluation-order amendment and pre-test weight fingerprints are recorded in `frozen_decoder.json`. No model weights or raw match archives are included.
 

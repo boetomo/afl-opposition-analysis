@@ -1,6 +1,6 @@
 # Opposition review app
 
-A browser application for exploring archived AFL events, inspecting frozen decoder forecasts and exporting an opposition briefing. It supports every club represented in the archive. No training runs when the app starts or while a report is generated.
+A browser application for exploring archived AFL events, inspecting forecasts from the tuned decoder-only Transformer and exporting an opposition briefing. It supports every club represented in the archive. No training runs when the app starts or while a report is generated.
 
 ## Open the hosted demo
 

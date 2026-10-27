@@ -1,5 +1,7 @@
 # AFL Opposition Analysis
 
+**[Open the live app](https://afl-opposition-analysis.streamlit.app/)** — try the all-club sample in your browser. No installation or sign-in is required.
+
 Explore AFL match events, inspect next-event forecasts and download an opposition briefing. The browser app supports **all 18 clubs**, combining recorded ball movement, model probabilities and summaries of observed next-action tendencies.
 
 A shared decoder predicts which team acts next, what it does and where the event occurs, using both teams and the observed quarter history. Separate research experiments estimate whether a possession will lead to a shot or goal.
@@ -10,7 +12,7 @@ A shared decoder predicts which team acts next, what it does and where the event
 
 ## Try the app
 
-The app can be hosted on Streamlit Community Cloud so visitors need only a browser. See [online deployment instructions](docs/app.md#deploy-on-streamlit-community-cloud).
+**[Launch the hosted demo](https://afl-opposition-analysis.streamlit.app/)** to explore the included sample. For a separate deployment, see [hosting instructions](docs/app.md#deploy-on-streamlit-community-cloud).
 
 Download or clone the repository. With Python 3.14 or later installed, run these commands from the repository root in PowerShell. Skip the first command if the project virtual environment already exists.
 

@@ -2,6 +2,10 @@
 
 A browser application for exploring archived AFL events, inspecting frozen decoder forecasts and exporting an opposition briefing. It supports every club represented in the archive. No training runs when the app starts or while a report is generated.
 
+## Open the hosted demo
+
+**[Launch AFL Opposition Analysis](https://afl-opposition-analysis.streamlit.app/)**. The public demo includes the all-club sample, event replays, frozen forecasts and downloadable HTML briefings. No installation or sign-in is required.
+
 ## Start locally
 
 From the repository root, using the existing virtual environment:
@@ -67,7 +71,7 @@ These summaries describe the situations encountered in the selected games. They 
 4. Deploy the app and set its sharing to **public** in the app settings. Open the resulting `streamlit.app` URL in a signed-out browser to verify access.
 5. Check team selection, replay controls, actual-event reveal and the HTML report download. Add the verified public URL to the repository's About field and README.
 
-The root `requirements.txt` delegates to `requirements-app.txt`, which installs the app extra from `pyproject.toml`. Select Python 3.14 explicitly because this project requires it. No secrets, GPU, model weights or training are needed for the bundled demo. See the official [deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [dependency instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies).
+The root `requirements.txt` delegates to `requirements-app.txt`, which installs the app extra from `pyproject.toml`. Select Python 3.14 explicitly because this project requires it. No secrets, GPU, model weights or training are needed for the bundled demo. Linux installs use PyArrow 24.0.0 to match Community Cloud's compatibility workaround for PyArrow 26. Other platforms retain the existing 26.0.0 pin. See the official [deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [dependency instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies).
 
 A fresh deployment serves the committed sample covering all 18 clubs. It contains partial matches. The larger local archive under `artifacts/` is not committed and will not appear automatically on the host.
 

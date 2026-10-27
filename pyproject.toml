@@ -10,7 +10,9 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "pandas==3.0.6",
-    "pyarrow==26.0.0",
+    # Match Community Cloud's workaround for the PyArrow 26 Linux crash.
+    "pyarrow==24.0.0; sys_platform == 'linux'",
+    "pyarrow==26.0.0; sys_platform != 'linux'",
 ]
 
 [project.optional-dependencies]

@@ -4,7 +4,7 @@
 
 Explore how AFL teams move the ball, compare model forecasts with what happened next, and download an opposition briefing. This independent project combines match-event replays, observed team tendencies and machine learning in one browser app.
 
-The app includes the full prepared **2026 archive: 218 matches, 869 available quarters and all 18 clubs**.
+The app includes the full prepared **2026 archive: 218 matches, 869 available quarters and all 18 clubs**, spanning 5 March to 26 September 2026.
 
 ## Try the app
 
@@ -12,9 +12,13 @@ The app includes the full prepared **2026 archive: 218 matches, 869 available qu
 2. **Inspect the play.** Step through events or press Play. Compare the predicted next team, action and location with the recorded outcome. **Reveal the actual next event** is checked by default and can be turned off.
 3. **Download a briefing.** Open **Opposition briefing**, review the tendency table and generate an HTML report that can be opened offline or printed to PDF.
 
-![The model predicts an Adelaide receive, matching the actual next event, with the predicted and recorded location markers nearly overlapping.](docs/images/opposition-app.jpg)
+![The full 2026 archive selected in the live app: 218 matches, 869 available quarters and 18 clubs. Adelaide's all-match view contains 25 matches and 100 quarters.](docs/images/opposition-app.jpg)
 
-*One successful example: Collingwood v Adelaide Crows, 14 March 2026, quarter 1, after event 50. The model assigns 67.5% to an Adelaide receive, which happens next. The location markers nearly overlap. Overall performance is summarised below.*
+*Full-archive view: Adelaide's 25 matches and 100 quarters are available for review. Select any club, then choose a match and an available quarter.*
+
+![A correct prediction from the full archive: Adelaide Crows receive at 67.5%, matching the actual next event at 03:31, with the predicted and recorded locations nearly overlapping.](docs/images/opposition-prediction.jpg)
+
+*One successful example from the same replay: Collingwood v Adelaide Crows, 14 March 2026, quarter 1, after event 50. The model assigns 67.5% to an Adelaide receive, which is recorded at 03:31. The location markers nearly overlap. This illustration was selected to show a correct prediction; overall performance is summarised below.*
 
 ## What can an analyst explore?
 

@@ -20,6 +20,7 @@ def cached_bundle(folder, stamp):
 
 @st.cache_data(show_spinner=False, max_entries=8)
 def briefing(folder, stamp, club, cutoff, ids):
+    """Export a briefing with data quality warnings explained."""
     bundle = cached_bundle(folder, stamp)
     matches = select_matches(bundle, club, cutoff, count=None)
     matches = matches.loc[matches.match_id.isin(ids)]
@@ -173,7 +174,7 @@ def main(root):
                         st.dataframe(all_probs, hide_index=True, width='stretch')
                     st.caption('The purple cross is one location estimate for an ordinary action. It is shared across possible actions; it is not a predicted destination for each action. Probabilities are model estimates, not guaranteed frequencies.')
                 else:
-                    st.warning('This observation is flagged for archive review. Its forecast is withheld, and it is excluded from the briefing summaries.')
+                    st.warning('This event has data quality warnings. Its forecast is withheld, and affected transitions are excluded from the briefing summaries.')
                 if st.session_state.reveal:
                     if position + 1 < len(quarter):
                         nxt = quarter.iloc[position + 1]
@@ -181,16 +182,18 @@ def main(root):
                         actual = 'Unknown passage' if nxt.action_type == 'gap' else label(target_code, match.home_name, match.away_name)
                         st.info(f'Actual next · {clock(nxt.period_seconds)} · {actual}')
                         if not row.labelled:
-                            st.caption('This transition is excluded from benchmark scoring because of archive quality flags.')
+                            st.caption('This transition is excluded from model evaluation because of data quality warnings.')
                     else:
                         st.info('End of recorded quarter: there is no next observation to reveal.')
             with st.expander('Observed event list'):
                 seen = quarter.iloc[:position + 1][['period_seconds','action_type','side','eligible']].tail(30).copy()
                 seen['Time'] = seen.period_seconds.map(clock)
                 seen['Team'] = seen.side.map({0:match.home_name,1:match.away_name,2:'Neutral / unknown'})
-                seen = seen.rename(columns={'action_type':'Action','eligible':'Archive quality passed'})
-                st.dataframe(seen[['Time','Team','Action','Archive quality passed']], hide_index=True, width='stretch')
+                seen = seen.rename(columns={'action_type':'Action','eligible':'Data quality checks passed'})
+                st.dataframe(seen[['Time','Team','Action','Data quality checks passed']], hide_index=True, width='stretch')
         replay()
+        with st.expander('Data quality warnings'):
+            st.write('These warnings mark missing, inconsistent or ambiguous match records, such as an unclear action or suspicious location. A warning may apply to a whole possession. It concerns data reliability, not the model’s confidence. Forecasts are withheld for affected events, and affected transitions are excluded from model evaluation and briefing summaries. Quarters with backwards timestamps are omitted.')
     with report_tab:
         st.subheader('What does this team tend to do next?')
         st.write('Compare recorded outcomes with the model’s average estimates in the same situations. Each row describes the current action and field third.')
@@ -199,7 +202,7 @@ def main(root):
         st.caption('Kick / handball refer to this team’s next recorded action. Other-team refers to the next recorded action belonging to the opposition, not total turnover risk. Other actions and boundaries are not shown in these columns. Small groups are unstable.')
         with st.expander('Match coverage and limitations'):
             st.dataframe(matches[['date','home_name','away_name','quarters_available']], hide_index=True)
-            st.write('Retrospective archive quality filters exclude uncertain transitions. The 2026 benchmark is already observed; this is not evidence of live-match reliability. Rare actions remain difficult. This first version does not compare clubs after controlling for their situations or recommend defensive tactics.')
+            st.write('Data quality warnings identify uncertain records. Affected transitions are excluded from the briefing summaries. The 2026 benchmark is already observed; this is not evidence of live-match reliability. Rare actions remain difficult. This first version does not compare clubs after controlling for their situations or recommend defensive tactics.')
         st.subheader('Download the briefing')
         st.write('A standalone HTML report with the selected matches, tendency tables and up to six example passages. Open it in a browser, or print it to PDF.')
         report_key = (str(folder), stamp, club, str(cutoff), tuple(matches.match_id))

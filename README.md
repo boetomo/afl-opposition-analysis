@@ -1,10 +1,51 @@
 # AFL Opposition Analysis
 
-A research project modelling AFL ball movement from public match-event data. It asks: **given the play observed so far, which team performs the next recorded action, what is that action, and where does it occur?** Separate models estimate whether a possession will lead to a shot or goal.
+Explore AFL match events, inspect next-event forecasts and download an opposition briefing. The browser app supports **all 18 clubs**, combining recorded ball movement, model probabilities and summaries of observed next-action tendencies.
 
-The chronological next-event model is shared across clubs and uses team identity and match history as context. Its forecasts provide a starting point for studying opponents' ball-movement choices. Automated opposition reports and an interactive application remain planned.
+A shared decoder predicts which team acts next, what it does and where the event occurs, using both teams and the observed quarter history. Separate research experiments estimate whether a possession will lead to a shot or goal.
 
-**Status:** the Optuna-tuned chronological decoder has completed evaluation across three seeds. The Seq2Event Optuna study is paused and remains unfinished. Initial next-event experiments and shot/goal benchmarks are also available below.
+![AFL replay showing recorded ball movement, the predicted next location and next-event probabilities.](docs/images/opposition-app.jpg)
+
+*Included sample: Collingwood v Adelaide Crows, 14 March 2026, quarter 1, event 50. The actual next event is hidden. The screenshot illustrates the interface; it is not an evaluation result.*
+
+## Try the app
+
+Download or clone the repository. With Python 3.14 or later installed, run these commands from the repository root in PowerShell. Skip the first command if the project virtual environment already exists.
+
+```powershell
+py -3.14 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[app]"
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
+```
+
+Open the local address printed by Streamlit, normally **http://127.0.0.1:8501**. Select a team and match, step through the replay, then open **Opposition briefing** to generate and download a standalone HTML report.
+
+The included sample covers all 18 clubs and runs **without model weights or training**. It contains partial matches for demonstration. A prepared full archive supports review across recent matches. The app labels coverage and separates observed frequencies from model estimates. See [setup, usage and archive preparation](docs/app.md).
+
+## Results at a glance
+
+Models fit on 2023–2024, tune on 2025 and refit on 2023–2025 before evaluation on 2026. The 2026 season is an **already-observed project benchmark**. These comparisons do not establish live-match reliability or statistically significant superiority.
+
+**Next team, action and location.** The tuned causal decoder improves on the transition baseline and earlier decoder on the same 333,883 next-event targets. The prediction classes include a neutral boundary; location RMSE uses 304,298 valid coordinate targets and dimensionless venue-normalised coordinates.
+
+| Model | Next team/action accuracy ↑ | Log loss ↓ | Macro F1 ↑ | Location RMSE ↓ |
+| --- | ---: | ---: | ---: | ---: |
+| Transition baseline | 57.86% | 1.2346 | 0.2366 | 0.1992 |
+| Earlier decoder, one seed | 63.08% | 1.0795 | 0.3159 | 0.1351 |
+| Tuned decoder, three-seed mean | **63.61%** | **1.0577** | **0.3338** | **0.1249** |
+
+The app uses cached forecasts from the predeclared first refit, seed 2026. The final row above averages three independent refits. Rare-action recall remains weak. [Results and confusion matrices in Notebook 15](notebooks/15_decoder_evaluation.ipynb) · [Evaluation details](docs/decoder-evaluation.md).
+
+**Shot and goal prediction.** The revised Transformer has the lowest binary cross-entropy (BCE) and highest average precision (AP) in the single-model comparison. Its improvement over the history LSTM is modest:
+
+| Model | Shot BCE ↓ | Shot AP ↑ | Goal BCE ↓ | Goal AP ↑ |
+| --- | ---: | ---: | ---: | ---: |
+| LSTM with history | 0.39499 | 0.61898 | 0.28570 | 0.34723 |
+| Revised Transformer | **0.39301** | **0.62340** | **0.28521** | **0.35144** |
+
+These are separate possession-outcome experiments and are not yet displayed in the app. At a 0.5 threshold, the Transformer has higher precision but lower recall and F1 than the history LSTM. [Full comparison in Notebook 11](notebooks/11_transformer_retraining.ipynb) · [All shot and goal benchmarks](#completed-shot-and-goal-benchmarks).
+
+The app provides historical match review and downloadable opposition reports. Live data ingestion and validated tactical recommendations remain future work. The decoder evaluation is complete; the Seq2Event Optuna study remains paused and unfinished.
 
 ## Start here
 
@@ -35,7 +76,7 @@ The initial search screens four configurations per formulation and continues two
 | Chronological next team–action/boundary | Transition baseline | 57.9% | 1.2346 | 0.1992 |
 | Chronological next team–action/boundary | Causal decoder | 63.1% | 1.0795 | 0.1351 |
 
-Seq2Event action metrics exclude boundary targets. Decoder joint metrics include a neutral boundary class; team and action marginal diagnostics are reported separately. Location errors use dimensionless venue-normalised coordinates. These experiments do not yet produce validated tactical recommendations or an opposition report.
+Seq2Event action metrics exclude boundary targets. Decoder joint metrics include a neutral boundary class; team and action marginal diagnostics are reported separately. Location errors use dimensionless venue-normalised coordinates. The app uses the tuned chronological decoder to generate opposition briefings with observed tendencies and match examples. Tactical recommendations have not been validated.
 
 Notebook 13 also includes a predetermined forecast from the first recorded 2026 quarter: the observed history, next team/action probabilities, predicted location and actual next event. This example was selected independently of prediction quality.
 
@@ -77,15 +118,9 @@ The revised Transformer leads the single-model comparison on BCE, Brier score an
 
 ## Optuna-tuned decoder results
 
-The decoder completed 60 trials, three-seed finalist selection and three fresh 56-epoch refits. Selection used 2025 only. All three refits were frozen before this evaluation on the shared 2026 benchmark.
+The [headline results above](#results-at-a-glance) come from a completed 60-trial search, three-seed finalist selection and three fresh 56-epoch refits. Selection used 2025 only. All three refits were frozen before evaluation on the shared 2026 benchmark.
 
-| Model | Next team/action accuracy ↑ | Log loss ↓ | Macro F1 ↑ | Location RMSE ↓ |
-| --- | ---: | ---: | ---: | ---: |
-| Transition baseline | 57.86% | 1.2346 | 0.2366 | 0.1992 |
-| Earlier decoder, one seed | 63.08% | 1.0795 | 0.3159 | 0.1351 |
-| Tuned decoder, three-seed mean | **63.61%** | **1.0577** | **0.3338** | **0.1249** |
-
-These rows use the same 333,883 next-event targets. Accuracy improves by 0.53 percentage points and location RMSE falls by 7.6% relative to the earlier decoder. Across seeds, accuracy SD is 0.074 percentage points and location RMSE SD is 0.00161. Rare-action recall remains weak, and 2026 is an already-observed benchmark.
+Relative to the earlier decoder, accuracy improves by 0.53 percentage points and location RMSE falls by 7.6%. Across seeds, accuracy SD is 0.074 percentage points and location RMSE SD is 0.00161.
 
 **Evaluation-order amendment:** the Seq2Event study is paused after epoch 32 of trial 36. The decoder was evaluated separately before that study finished, with its configuration, seeds and weights unchanged. This changes the original combined evaluation order. Seq2Event's search remains frozen for resumption, and the combined experiment is not marked complete.
 
@@ -107,11 +142,11 @@ Codex's assistance is acknowledged as part of the development process. The maint
 
 > How do opponents move the ball, which actions are likely next, and when does a possession become threatening?
 
-The next-event models describe likely ball movement from observed history. The shot and goal models estimate possession outcomes. A planned reporting layer will combine these predictions with summaries of each team's observed patterns and supporting match examples. Forecasts alone do not establish which defensive response would improve an outcome.
+The next-event models describe likely ball movement from observed history. The shot and goal models estimate possession outcomes. The app combines next-event predictions with summaries of each team's observed patterns and supporting match examples. Integrating shot and goal estimates into these reports remains future work. Forecasts alone do not establish which defensive response would improve an outcome.
 
-## Planned output
+## Current output
 
-An interactive possession viewer and a downloadable opposition report containing movement patterns, shot and goal rates, model estimates and supporting match examples.
+An event replay viewer and a downloadable opposition briefing containing observed next-action tendencies, decoder estimates and supporting match examples. Shot/goal reporting and live match ingestion remain future work.
 
 ## Data
 

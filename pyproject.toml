@@ -18,6 +18,7 @@ notebook = ["notebook==7.6.3"]
 model = ["scikit-learn==1.9.1", "xgboost==3.4.1"]
 sequence = ["torch==2.11.0"]
 tuning = ["optuna==5.0.0"]
+app = ["streamlit==1.66.1", "plotly==7.1.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,81 @@
+{
+  "contract": "opposition-app-v1",
+  "actions": [
+    "bounce",
+    "free_kick",
+    "gather",
+    "ground_kick",
+    "handball",
+    "hard_ball_get",
+    "kick",
+    "kick_in",
+    "kick_in_play_on",
+    "loose_ball_get",
+    "mark",
+    "receive"
+  ],
+  "seed": 2026,
+  "trained_through": "2025-12-31",
+  "model_fingerprint": "6b72db2e82c0d5b425f4113d98585d34861d8efb2c11ad8d17daad202619f958",
+  "weights_sha256": "ae082a1c4dcbe76e16d2672541b94c48224e112264e8ee352ff9914043020d8b",
+  "created_utc": "2026-10-26T02:32:42.267252+00:00",
+  "data_provenance": {
+    "sources": {
+      "2026": {
+        "source_sha256": "679d97f96204dc3f8189fc94ad3d3cae3a7861145c8c6c0ad114951a45abf74f",
+        "source_filename": "chains_data_2026_all.parquet",
+        "shot_marker_policy": "exclude_touched_possessions_v1",
+        "verified_retrospective_shot_markers": 1969,
+        "conflicting_shot_markers": 0,
+        "shot_conflict_possessions": 0,
+        "shot_conflict_locations": [],
+        "time_reversal_policy": "quarantine_quarter_v1",
+        "quarantined_rows": 1616,
+        "quarantined_quarters": [
+          {
+            "match_id": "CD_M20260140001",
+            "period": 1
+          },
+          {
+            "match_id": "CD_M20260140206",
+            "period": 2
+          },
+          {
+            "match_id": "CD_M20260142005",
+            "period": 3
+          }
+        ],
+        "processed_file_sha256": {
+          "events.parquet": "d199a570080efcb4327df4cee0b4afd238f882219165152a7061e2cf0b26f686",
+          "possessions.parquet": "f3aa2421d1b1140a46c994476d06587aec4a05319564bc243a7598dd9397fb7c",
+          "annotations.parquet": "5473a1c9ad24f9b59940e910f360042ceb930a5dd69104a48d4257a9ede9ea84",
+          "summary.json": "f081bb0925670c08c806165aef1529503a94a0df3409c6ebd82731808e54c84f"
+        }
+      }
+    }
+  },
+  "source_audit": {
+    "contract": "quarter-events-v1",
+    "quarters": 869,
+    "tokens": 357223,
+    "ball_actions": 324461,
+    "boundaries": 31345,
+    "gaps": 1417,
+    "ineligible_tokens": 20434,
+    "quarter_length_min": 326,
+    "quarter_length_median": 411.0,
+    "quarter_length_max": 512,
+    "history_cap": null,
+    "quality_policy": "Reviewed observations remain inputs; transitions touching them or gap tokens are not scored.",
+    "coordinate_frame": "Home attacking direction within each quarter; dimensionless venue-normalised coordinates."
+  },
+  "prediction_policy": "Frozen first seed (2026), selected independently of test performance. Full-quarter causal inference verified against truncated prefixes.",
+  "selected_seed_reason": "Predeclared first seed; not selected by test score.",
+  "bundle_id": "2026-sample-seed2026",
+  "coverage": "sample",
+  "coverage_note": "Demonstration sample: the earliest available quarter in each club's earliest archived match. Every club is represented, but these are partial matches, not a recent-form briefing.",
+  "files": {
+    "events.parquet": "d055a0eaede8af7cbc72f26949cfdfd5c12322c119e8882d13a881c8acb404ee",
+    "matches.parquet": "f992046290fc9be523ea4bbdce06210e6a7a937ad068b354ee02323013e4e55e"
+  }
+}
